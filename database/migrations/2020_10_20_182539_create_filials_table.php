@@ -16,7 +16,7 @@ class CreateFilialsTable extends Migration
         Schema::create('filials', function (Blueprint $table) {
             $table->id('id');
             $table->string('nome');
-            $table->string('numero', 4);
+            $table->integer('numero');
             $table->string('rua', 100);
             $table->string('bairro', 100);
             $table->string('complemento', 200);

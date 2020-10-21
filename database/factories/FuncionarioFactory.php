@@ -18,7 +18,6 @@ $factory->define(Funcionario::class, function (Faker $faker) {
         'uf' => $faker->randomAscii,
         'cep' => $faker->randomAscii,
         'cpf' => $faker->randomAscii,
-        'inscricao_estadual' => $faker->randomAscii,
         'salario' => $faker->randomDigit,
         'status' => $faker->boolean,
         'senha' => $faker->randomAscii,

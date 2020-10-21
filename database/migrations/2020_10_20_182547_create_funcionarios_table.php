@@ -28,7 +28,6 @@ class CreateFuncionariosTable extends Migration
             $table->string('cep', 8);
             $table->double('salario', 10, 2);
             $table->boolean('status');
-            $table->string('inscricao_estadual');
             $table->string('senha', 6);
             $table->foreignId('cargo_id')->constrained('cargos');
             $table->foreignId('filial_id')->constrained('filials');

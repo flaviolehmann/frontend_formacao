@@ -19,7 +19,7 @@ class CreateFuncionariosTable extends Migration
             $table->date('data_aniversario');
             $table->string('sexo', 1);
             $table->string('cpf', 11);
-            $table->string('numero', 4);
+            $table->integer('numero');
             $table->string('rua', 100);
             $table->string('bairro', 100);
             $table->string('complemento', 200);
@@ -28,6 +28,7 @@ class CreateFuncionariosTable extends Migration
             $table->string('cep', 8);
             $table->double('salario', 10, 2);
             $table->boolean('status');
+            $table->string('inscricao_estadual');
             $table->string('senha', 6);
             $table->foreignId('cargo_id')->constrained('cargos');
             $table->foreignId('filial_id')->constrained('filials');

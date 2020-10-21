@@ -19,7 +19,7 @@ class CreateFuncionariosTable extends Migration
             $table->date('data_aniversario');
             $table->string('sexo', 1);
             $table->string('cpf', 11);
-            $table->string('numero', 4);
+            $table->integer('numero');
             $table->string('rua', 100);
             $table->string('bairro', 100);
             $table->string('complemento', 200);

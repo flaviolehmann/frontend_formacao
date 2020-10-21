@@ -29,8 +29,8 @@ class CreateFuncionariosTable extends Migration
             $table->double('salario', 10, 2);
             $table->boolean('status');
             $table->string('senha', 6);
-            $table->foreignId('cargo_id', 30)->constrained('cargos');
-            $table->foreignId('filial_id', 30)->constrained('filials');
+            $table->foreignId('cargo_id')->constrained('cargos');
+            $table->foreignId('filial_id')->constrained('filials');
 
             $table->softDeletes();
             $table->timestamps();

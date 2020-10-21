@@ -14,8 +14,8 @@ $factory->define(Automovel::class, function (Faker $faker) {
         "ano" => $faker->year,
         "cor" => $faker->colorName,
         "nr_chassi" => $faker->randomNumber,
-        "modelo_id" => Modelo::factory(),
-        "categoria_id" => Categoria::factory(),
-        "filial_id" => Filial::factory()
+        "modelo_id" => function () { return factory(Modelo::class)->create()->id;},
+        "categoria_id" => function () { return factory(Categoria::class)->create()->id;},
+        "filial_id" => function () { return factory(Filial::class)->create()->id;}
     ];
 });

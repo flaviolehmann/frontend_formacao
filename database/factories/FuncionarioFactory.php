@@ -3,6 +3,8 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Funcionario;
+use App\Models\Cargo;
+use App\Models\Filial;
 use Faker\Generator as Faker;
 
 $factory->define(Funcionario::class, function (Faker $faker) {
@@ -21,7 +23,7 @@ $factory->define(Funcionario::class, function (Faker $faker) {
         'salario' => $faker->randomDigit,
         'status' => $faker->boolean,
         'senha' => $faker->randomAscii,
-        'cargo_id' => 1,
-        'filial_id' => 1
+        'cargo_id' => function () { return factory(Cargo::class)->create()->id;},
+        'filial_id' => function () { return factory(Filial::class)->create()->id;}
     ];
 });

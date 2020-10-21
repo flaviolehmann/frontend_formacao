@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Filial;
 
 class FilialSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class FilialSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Filial::class, 50)->create();
+        factory(Filial::class, 50)->create();
     }
 }

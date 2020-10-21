@@ -21,7 +21,11 @@ $factory->define(Funcionario::class, function (Faker $faker) {
         'salario' => $faker->randomDigit,
         'status' => $faker->boolean,
         'senha' => $faker->randomAscii,
-        'cargo_id' => 1,
-        'filial_id' => 1
+        'cargo_id' => function () {
+            return factory(\App\Models\Cargo::class);
+        },
+        'filial_id' => function () {
+            return factory(\App\Models\Filial::class);
+        }
     ];
 });

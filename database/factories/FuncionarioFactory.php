@@ -23,7 +23,7 @@ $factory->define(Funcionario::class, function (Faker $faker) {
         'salario' => $faker->randomDigit,
         'status' => $faker->boolean,
         'senha' => $faker->randomAscii,
-        'cargo_id' => function () { return factory(Cargo::class)->create()->id;},
-        'filial_id' => function () { return factory(Filial::class)->create()->id;}
+        'cargo_id' => factory(Cargo::class)->create()->id,
+        'filial_id' => factory(Filial::class)->create()->id
     ];
 });

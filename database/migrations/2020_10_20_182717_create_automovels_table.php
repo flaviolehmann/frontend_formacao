@@ -19,7 +19,7 @@ class CreateAutomovelsTable extends Migration
             $table->bigInteger('ano');
             $table->string('cor', 100);
             $table->string('nr_chassi', 100);
-            $table->foreignId('id_modelo')->constrained('modelos');
+            $table->foreignId('modelo_id')->constrained('modelos');
             $table->foreignId('categoria_id')->constrained('categorias');
             $table->foreignId('filial_id')->constrained('filials');
 

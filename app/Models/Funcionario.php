@@ -8,7 +8,7 @@ class Funcionario extends Model
 {
     protected $dates = ['data_aniversario'];
     protected $fillable = ['nome', 'data_aniversario', 'sexo', 'numero', 'rua', 'bairro', 'complemento', 'cidade',
-        'uf', 'cep', 'inscricao_estadual', 'cpf', 'salario', 'status'];
+        'uf', 'cep', 'cpf', 'salario', 'status'];
     protected $guarded = ['id', 'created_at', 'update_at'];
 
     public function filial()

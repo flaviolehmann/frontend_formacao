@@ -2,70 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AutomovelRequest;
 use App\Models\Automovel;
+use App\Services\AutomovelService;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AutomovelController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Automovel[]|Collection|Response
+     * @var AutomovelService
      */
-    public function index()
+    private $automovelService;
+
+    /**
+     * AutomovelController constructor.
+     * @param AutomovelService $automovelService
+     */
+    public function __construct(
+        AutomovelService $automovelService
+    )
     {
-        return Automovel::all();
+        $this->automovelService = $automovelService;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function create()
+    public function index()
     {
-        //
+        return response()->json(Automovel::all(), 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param AutomovelRequest $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(AutomovelRequest $request)
     {
-        //
+        return response()->json($this->automovelService->createAutomovel($request->all()), 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json(Automovel::all()->where('id', '=', $id), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return Response
      */

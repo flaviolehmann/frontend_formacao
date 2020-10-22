@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Automovel extends Model
 {
-    protected $fillable = ['nome', 'ano', 'cor', 'nr_chassi'];
+    protected $fillable = ['nome', 'ano', 'cor', 'nr_chassi', 'modelo_id', 'categoria_id', 'filial_id'];
     protected $guarded = ['id', 'created_at', 'update_at'];
 
     public function modelo()

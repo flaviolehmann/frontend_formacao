@@ -29,7 +29,14 @@ class FuncionarioRequest extends FormRequest
             'sexo' => 'required|max:1',
             'data_aniversario' => 'required',
             'numero' => 'required|max:4',
-            'rua' => 'required'
+            'rua' => 'required',
+            'bairro' => 'required',
+            'complemento' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required',
+            'cep' => 'required',
+            'cpf' => 'required',
+            'status' => 'required',
         ];
     }
 }

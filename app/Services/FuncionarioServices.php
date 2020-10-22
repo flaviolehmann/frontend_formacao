@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Funcionario;
+use Illuminate\Support\Facades\Hash;
 use App\Repositories\FuncionarioRepository;
 
 class FuncionarioServices
@@ -17,7 +18,8 @@ class FuncionarioServices
     {
         try {
             $funcionario = new Funcionario();
-            $funcionario->fill($request->all());
+            $funcionario->fill($request->except(['senha']));
+            $funcionario->senha = $this->gerarSenha();
 
             $this->repository->save($funcionario);
             return $funcionario;
@@ -25,5 +27,15 @@ class FuncionarioServices
             return response()->json(["Erro ao criar novo funcionário \n $th", 404]);
         }
 
+    }
+
+    private function gerarSenha()
+    {
+        $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $senha = '';
+        for (;strlen($senha) < 6;) {
+            $senha .= $caracteres[rand(0, strlen($caracteres)-1)];
+        }
+        return $senha;
     }
 }

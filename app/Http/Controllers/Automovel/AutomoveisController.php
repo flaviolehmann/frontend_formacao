@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Automovel;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MinhaController extends Controller
+class AutomoveisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,7 @@ class MinhaController extends Controller
      */
     public function index()
     {
-        // dd("Teste");
-        return view('pages.teste');
+        //
     }
 
     /**

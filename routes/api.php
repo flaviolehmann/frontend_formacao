@@ -23,3 +23,6 @@ Route::get('/', function () {
 Route::resource('filiais', 'Filial\FiliaisController');
 Route::resource('funcionarios', 'Funcionario\FuncionariosController');
 Route::resource('automoveis', 'Automovel\AutomoveisController');
+Route::resource('cargos', 'Cargo\CargosController');
+Route::resource('modelos', 'Modelo\ModelossController');
+Route::resource('categorias', 'Categoria\CategoriasController');

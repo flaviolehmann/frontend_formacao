@@ -2,16 +2,34 @@
 
 namespace App\Http\Controllers\Filial;
 
-use App\Models\Filial;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\FilialService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FiliaisController extends Controller
 {
     /**
+     * @var FilialService
+     */
+    private $filialService;
+
+    /**
+     * FiliaisController constructor.
+     */
+    public function __construct(
+        FilialService $filialService
+    )
+    {
+        $this->filialService = $filialService;
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -21,7 +39,7 @@ class FiliaisController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -31,19 +49,19 @@ class FiliaisController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($this->filialService->createFilial($request->all()), 201);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -54,7 +72,7 @@ class FiliaisController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -64,9 +82,9 @@ class FiliaisController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -77,7 +95,7 @@ class FiliaisController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

@@ -44,11 +44,11 @@ class FuncionariosController extends Controller
     public function store(FuncionarioRequest $request)
     {
         try {
-            $funcionario = $this->service->novoFuncionario($request);
+            $funcionario = $this->service->createFuncionario($request);
 
             return response()->json($funcionario, 201);
         } catch (\Throwable $th) {
-            return response()->json(["message => $th"]);
+            return response()->json(["message" => $th->getMessage()]);
         }
     }
 

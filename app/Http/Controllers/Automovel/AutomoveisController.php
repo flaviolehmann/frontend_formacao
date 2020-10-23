@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Automovel;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\AutomovelService;
+use App\Http\Controllers\Controller;
 
 class AutomoveisController extends Controller
 {

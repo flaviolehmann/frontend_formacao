@@ -6,6 +6,7 @@ use App\Models\Modelo;
 use Illuminate\Http\Request;
 use App\Services\ModeloService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ModeloRequest;
 
 class ModelosController extends Controller
 {
@@ -40,14 +41,14 @@ class ModelosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModeloRequest $request)
     {
         try {
-            $funcionario = $this->service->novoModelo($request);
+            $modelo = $this->service->createModelo($request);
 
-            return response()->json($funcionario, 201);
+            return response()->json($modelo, 201);
         } catch (\Throwable $th) {
-            return response()->json(["message => $th"]);
+            return response()->json(["message" => $th->getMessage()]);
         }
     }
 
@@ -59,7 +60,11 @@ class ModelosController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            return response()->json(Modelo::find($id));
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
     }
 
     /**
@@ -80,9 +85,15 @@ class ModelosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModeloRequest $request, $id)
     {
-        //
+        try {
+            $modelo = $this->service->updateModelo($request, $id);
+
+            return response()->json($modelo, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
     }
 
     /**

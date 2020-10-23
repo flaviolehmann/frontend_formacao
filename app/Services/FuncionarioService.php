@@ -6,7 +6,7 @@ use App\Models\Funcionario;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\FuncionarioRepository;
 
-class FuncionarioServices
+class FuncionarioService
 {
 
     public function __construct()
@@ -14,7 +14,7 @@ class FuncionarioServices
         $this->repository = new FuncionarioRepository();
     }
 
-    public function novoFuncionario($request)
+    public function createFuncionario($request)
     {
         try {
             $funcionario = new Funcionario();

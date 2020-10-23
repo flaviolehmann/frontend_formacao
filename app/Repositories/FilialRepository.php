@@ -13,4 +13,9 @@ class FilialRepository
         $filial->save();
         return $filial;
     }
+
+    public function delete(int $idFilial)
+    {
+        Filial::destroy($idFilial);
+    }
 }

@@ -2,12 +2,30 @@
 
 namespace App\Http\Controllers\Cargo;
 
-use App\Models\Cargo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\CargoService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class CargosController extends Controller
 {
+    /**
+     * @var CargoService
+     */
+    private $cargoService;
+
+    /**
+     * CargosController constructor.
+     * @param CargoService $cargoService
+     */
+    public function __construct(
+        CargoService $cargoService
+    )
+    {
+        $this->cargoService = $cargoService;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +39,10 @@ class CargosController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -32,11 +51,11 @@ class CargosController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($this->cargoService->createCargo($request->all()), 201);
     }
 
     /**

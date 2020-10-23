@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers\Funcionario;
 
-use App\Models\Funcionario;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\FuncionarioService;
 use App\Http\Requests\FuncionarioRequest;
+use App\Models\Funcionario;
+use App\Services\FuncionarioService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FuncionariosController extends Controller
 {
+    /**
+     * @var FuncionarioService
+     */
+    private $funcionarioService;
+
     public function __construct(FuncionarioService $service)
     {
-        $this->service = $service;
+        $this->funcionarioService = $service;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -28,7 +35,7 @@ class FuncionariosController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -39,7 +46,7 @@ class FuncionariosController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(FuncionarioRequest $request)
     {
@@ -56,7 +63,7 @@ class FuncionariosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -67,7 +74,7 @@ class FuncionariosController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -79,7 +86,7 @@ class FuncionariosController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -95,11 +102,12 @@ class FuncionariosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $idFuncionario
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(int $idFuncionario)
     {
-        //
+        $this->funcionarioService->destroyFuncionario($idFuncionario);
+        return response(null, 204);
     }
 }

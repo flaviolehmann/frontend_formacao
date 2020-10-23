@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Filial;
 
 use App\Models\Filial;
+use App\Http\Controllers\Controller;
+use App\Services\FilialService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Services\FilialService;
-use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
 
 class FiliaisController extends Controller
 {
@@ -59,17 +61,6 @@ class FiliaisController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -101,11 +92,12 @@ class FiliaisController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return void
+     * @param int $idFilial
+     * @return Application|ResponseFactory|Response|void
      */
-    public function destroy(int $id)
+    public function destroy(int $idFilial)
     {
-        $this->filialService->destroyFilial($id);
+        $this->filialService->destroyFilial($idFilial);
+        return response(null, 204);
     }
 }

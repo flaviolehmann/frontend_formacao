@@ -43,4 +43,8 @@ class AutomovelService
         }
     }
 
+    public function destroyAutomovel(int $idAutomovel) {
+        $this->automovelRepository->delete($idAutomovel);
+    }
+
 }

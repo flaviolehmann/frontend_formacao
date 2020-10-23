@@ -8,6 +8,7 @@ use App\Models\Cargo;
 
 class CargoRepository
 {
+
     public function save(Cargo $cargo)
     {
         $cargo->save();
@@ -18,4 +19,10 @@ class CargoRepository
     {
         return Cargo::findOrFail($id);
     }
+
+    public function delete(int $idCargo)
+    {
+        Cargo::destroy($idCargo);
+    }
+
 }

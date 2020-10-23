@@ -3,15 +3,20 @@
 namespace App\Services;
 
 use App\Models\Funcionario;
-use Illuminate\Support\Facades\Hash;
 use App\Repositories\FuncionarioRepository;
+use Illuminate\Support\Facades\Hash;
 
 class FuncionarioService
 {
 
+    /**
+     * @var FuncionarioRepository
+     */
+    private $funcionarioRepository;
+
     public function __construct()
     {
-        $this->repository = new FuncionarioRepository();
+        $this->funcionarioRepository = new FuncionarioRepository();
     }
 
     public function createFuncionario($request)
@@ -23,7 +28,7 @@ class FuncionarioService
 
             $funcionarioSalvo = clone $funcionario;
             $funcionario->senha = $this->hashSenha($funcionario->senha);
-            $this->repository->save($funcionario);
+            $this->funcionarioRepository->save($funcionario);
 
             return $funcionarioSalvo;
         } catch (\Throwable $th) {
@@ -59,4 +64,9 @@ class FuncionarioService
         }
         return $senha;
     }
+
+    public function destroyFuncionario(int $idFuncionario) {
+        $this->funcionarioRepository->delete($idFuncionario);
+    }
+
 }

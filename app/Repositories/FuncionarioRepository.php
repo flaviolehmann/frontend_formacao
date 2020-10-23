@@ -5,6 +5,7 @@ use App\Models\Funcionario;
 
 class FuncionarioRepository
 {
+
     public function save($funcionario)
     {
         $funcionario->save();
@@ -15,4 +16,10 @@ class FuncionarioRepository
     {
         return Funcionario::findOrFail($id);
     }
+
+    public function delete(int $idFuncionario)
+    {
+        Funcionario::destroy($idFuncionario);
+    }
+
 }

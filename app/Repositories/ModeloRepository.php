@@ -5,6 +5,7 @@ use App\Models\Modelo;
 
 class ModeloRepository
 {
+
     public function save($modelo)
     {
         $modelo->save();
@@ -15,4 +16,10 @@ class ModeloRepository
     {
         return Modelo::findOrFail($id);
     }
+
+    public function delete(int $idModelo)
+    {
+        Modelo::destroy($idModelo);
+    }
+
 }

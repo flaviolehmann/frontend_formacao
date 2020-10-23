@@ -1,10 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Filial\FiliaisController;
-use App\Http\Controllers\Funcionario\FuncionariosController;
-use App\Http\Controllers\Automovel\AutomoveisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +19,4 @@ Route::get('/', function () {
 Route::resource('filiais', 'Filial\FiliaisController');
 Route::resource('funcionarios', 'Funcionario\FuncionariosController');
 Route::resource('automoveis', 'Automovel\AutomoveisController');
+Route::resource('cargos', 'Cargo\CargosController');

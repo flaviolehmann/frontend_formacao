@@ -94,11 +94,11 @@ class FiliaisController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $this->filialService->destroyFilial($id);
     }
 }

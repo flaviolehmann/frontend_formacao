@@ -30,4 +30,8 @@ class FilialService
         return $this->filialRepository->save(new Filial($filial));
     }
 
+    public function destroyFilial(int $idFilial) {
+        $this->filialRepository->delete($idFilial);
+    }
+
 }

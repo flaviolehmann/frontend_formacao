@@ -3,21 +3,28 @@
 namespace App\Http\Controllers\Modelo;
 
 use App\Models\Modelo;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\ModeloService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class ModelosController extends Controller
 {
 
+    /**
+     * @var ModeloService
+     */
+    private $modeloService;
+
     public function __construct(ModeloService $service)
     {
-        $this->service = $service;
+        $this->modeloService = $service;
     }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -27,7 +34,7 @@ class ModelosController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,12 +45,12 @@ class ModelosController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
         try {
-            $funcionario = $this->service->novoModelo($request);
+            $funcionario = $this->modeloService->novoModelo($request);
 
             return response()->json($funcionario, 201);
         } catch (\Throwable $th) {
@@ -55,7 +62,7 @@ class ModelosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -66,7 +73,7 @@ class ModelosController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -78,7 +85,7 @@ class ModelosController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -88,11 +95,12 @@ class ModelosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $idModelo
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(int $idModelo)
     {
-        //
+        $this->modeloService->destroyModelo($idModelo);
+        return response(null, 204);
     }
 }

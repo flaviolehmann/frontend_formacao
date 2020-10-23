@@ -30,4 +30,8 @@ class CargoService
         return $this->cargoRepository->save(new Cargo($cargo));
     }
 
+    public function destroyCargo(int $idFuncionario) {
+        $this->cargoRepository->delete($idFuncionario);
+    }
+
 }

@@ -30,4 +30,8 @@ class AutomovelService
         return $this->automovelRepository->save(new Automovel($automovel));
     }
 
+    public function destroyAutomovel(int $idAutomovel) {
+        $this->automovelRepository->delete($idAutomovel);
+    }
+
 }

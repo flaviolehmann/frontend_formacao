@@ -15,4 +15,9 @@ class AutomovelRepository
         return $automovel;
     }
 
+    public function delete(int $idAutomovel)
+    {
+        Automovel::destroy($idAutomovel);
+    }
+
 }

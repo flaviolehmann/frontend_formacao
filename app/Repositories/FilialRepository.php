@@ -8,6 +8,7 @@ use App\Models\Filial;
 
 class FilialRepository
 {
+
     public function save(Filial $filial)
     {
         $filial->save();
@@ -18,4 +19,5 @@ class FilialRepository
     {
         Filial::destroy($idFilial);
     }
+
 }

@@ -58,17 +58,6 @@ class FiliaisController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -94,11 +83,12 @@ class FiliaisController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param int $idFilial
      * @return void
      */
-    public function destroy(int $id)
+    public function destroy(int $idFilial)
     {
-        $this->filialService->destroyFilial($id);
+        $this->filialService->destroyFilial($idFilial);
+        return response(null, 204);
     }
 }

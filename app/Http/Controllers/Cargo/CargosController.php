@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\CargoService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CargosController extends Controller
 {
@@ -29,7 +30,7 @@ class CargosController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -62,7 +63,7 @@ class CargosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -73,7 +74,7 @@ class CargosController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -85,7 +86,7 @@ class CargosController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -95,11 +96,12 @@ class CargosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $idCargo
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(int $idCargo)
     {
-        //
+        $this->cargoService->destroyCargo($idCargo);
+        return response(null, 204);
     }
 }

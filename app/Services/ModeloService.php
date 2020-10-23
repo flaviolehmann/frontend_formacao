@@ -7,9 +7,14 @@ use App\Repositories\ModeloRepository;
 
 class ModeloService
 {
+    /**
+     * @var ModeloRepository
+     */
+    private $modeloRepository;
+
     public function __construct()
     {
-        $this->repository = new ModeloRepository();
+        $this->modeloRepository = new ModeloRepository();
     }
 
     public function novoModelo($request)
@@ -18,7 +23,7 @@ class ModeloService
             $modelo = new Modelo();
             $modelo->fill($request->all());
 
-            $this->repository->save($modelo);
+            $this->modeloRepository->save($modelo);
 
             return $modelo;
         } catch (\Throwable $th) {
@@ -26,4 +31,9 @@ class ModeloService
         }
 
     }
+
+    public function destroyModelo(int $idModelo) {
+        $this->modeloRepository->delete($idModelo);
+    }
+
 }

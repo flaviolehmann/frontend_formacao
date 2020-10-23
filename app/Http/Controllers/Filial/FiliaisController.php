@@ -89,7 +89,13 @@ class FiliaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $filial = $this->filialService->updateFilial($request, $id);
+
+            return response()->json($filial, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
     }
 
     /**

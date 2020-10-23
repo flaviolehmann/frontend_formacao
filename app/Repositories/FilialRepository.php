@@ -18,4 +18,9 @@ class FilialRepository
     {
         Filial::destroy($idFilial);
     }
+
+    public function get($id)
+    {
+        return Filial::findOrFail($id);
+    }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Categoria;
 
+use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoriasController extends Controller
 {

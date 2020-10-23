@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Filial;
 
 use App\Http\Controllers\Controller;
 use App\Services\FilialService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -84,7 +86,7 @@ class FiliaisController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $idFilial
-     * @return void
+     * @return Application|ResponseFactory|Response|void
      */
     public function destroy(int $idFilial)
     {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Modelo;
 
+use App\Http\Controllers\Controller;
 use App\Models\Modelo;
+use App\Services\ModeloService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Services\ModeloService;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 
 class ModelosController extends Controller

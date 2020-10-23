@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Funcionario;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
+use App\Services\FuncionarioService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Services\FuncionarioService;
-use App\Http\Requests\FuncionarioRequest;
 use Illuminate\Http\Response;
 
 class FuncionariosController extends Controller

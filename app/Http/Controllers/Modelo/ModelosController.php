@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Modelo;
 
 use App\Models\Modelo;
 use Illuminate\Http\Request;
+use App\Services\ModeloService;
 use App\Http\Controllers\Controller;
 
 class ModelosController extends Controller
 {
+
+    public function __construct(ModeloService $service)
+    {
+        $this->service = $service;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +42,13 @@ class ModelosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $funcionario = $this->service->novoModelo($request);
+
+            return response()->json($funcionario, 201);
+        } catch (\Throwable $th) {
+            return response()->json(["message => $th"]);
+        }
     }
 
     /**

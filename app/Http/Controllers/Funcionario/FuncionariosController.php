@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Funcionario;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\FuncionarioServices;
+use App\Services\FuncionarioService;
 use App\Http\Requests\FuncionarioRequest;
 
 class FuncionariosController extends Controller
 {
-    public function __construct(FuncionarioServices $service)
+    public function __construct(FuncionarioService $service)
     {
         $this->service = $service;
     }

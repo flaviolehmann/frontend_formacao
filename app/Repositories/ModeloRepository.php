@@ -3,8 +3,9 @@ namespace App\Repositories;
 
 class ModeloRepository
 {
-    public function teste()
+    public function save($modelo)
     {
-        dd('chama');
+        $modelo->save();
+        return $modelo;
     }
 }

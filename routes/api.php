@@ -2,9 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Cargo\CargosController;
 use App\Http\Controllers\Filial\FiliaisController;
-use App\Http\Controllers\Funcionario\FuncionariosController;
+use App\Http\Controllers\Modelo\ModelosController;
 use App\Http\Controllers\Automovel\AutomoveisController;
+use App\Http\Controllers\Categoria\CategoriasController;
+use App\Http\Controllers\Funcionario\FuncionariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +27,5 @@ Route::resource('filiais', 'Filial\FiliaisController');
 Route::resource('funcionarios', 'Funcionario\FuncionariosController');
 Route::resource('automoveis', 'Automovel\AutomoveisController');
 Route::resource('cargos', 'Cargo\CargosController');
-Route::resource('modelos', 'Modelo\ModelossController');
+Route::resource('modelos', 'Modelo\ModelosController');
 Route::resource('categorias', 'Categoria\CategoriasController');

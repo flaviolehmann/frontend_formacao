@@ -13,4 +13,9 @@ class CargoRepository
         $cargo->save();
         return $cargo;
     }
+
+    public function get($id)
+    {
+        return Cargo::findOrFail($id);
+    }
 }

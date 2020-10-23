@@ -89,7 +89,13 @@ class CargosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $cargo = $this->cargoService->updateCargo($request, $id);
+
+            return response()->json($cargo, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
     }
 
     /**

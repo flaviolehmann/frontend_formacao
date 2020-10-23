@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Filial;
 
-use App\Http\Controllers\Controller;
-use App\Services\FilialService;
-use Illuminate\Http\JsonResponse;
+use App\Models\Filial;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\FilialService;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 
 class FiliaisController extends Controller
 {

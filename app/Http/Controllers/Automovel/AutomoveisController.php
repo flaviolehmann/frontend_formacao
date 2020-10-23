@@ -77,7 +77,13 @@ class AutomoveisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $automovel = $this->automovelService->updateAutomovel($request, $id);
+
+            return response()->json($automovel, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
     }
 
     /**

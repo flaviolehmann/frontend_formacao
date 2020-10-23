@@ -30,4 +30,17 @@ class AutomovelService
         return $this->automovelRepository->save(new Automovel($automovel));
     }
 
+    public function updateAutomovel($request, $id)
+    {
+        try {
+            $automovel = $this->automovelRepository->get($id);
+            $automovel->fill($request->except('id'));
+            $this->automovelRepository->save($automovel);
+
+            return $automovel;
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
+    }
+
 }

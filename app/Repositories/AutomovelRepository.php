@@ -15,4 +15,8 @@ class AutomovelRepository
         return $automovel;
     }
 
+    public function get($id)
+    {
+        return Automovel::findOrFail($id);
+    }
 }

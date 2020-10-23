@@ -18,7 +18,6 @@ use App\Http\Controllers\Automovel\AutomoveisController;
 */
 Route::get('/', function () {
     return response()->json(['message' => 'PicPayAPI API', 'status' => 'Connected']);
-    // return response()->json(new Pessoa());
 });
 
 Route::resource('filiais', 'Filial\FiliaisController');

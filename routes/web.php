@@ -14,7 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.teste');
+    return redirect('api');
 });
-
-Route::get('aula/teste', ['as' => 'rota.teste', 'uses' => 'MinhaController@index']);

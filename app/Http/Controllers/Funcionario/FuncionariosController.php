@@ -60,7 +60,7 @@ class FuncionariosController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -83,7 +83,13 @@ class FuncionariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $funcionario = $this->service->updateFuncionario($request, $id);
+
+            return response()->json($funcionario, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 200);
+        }
     }
 
     /**

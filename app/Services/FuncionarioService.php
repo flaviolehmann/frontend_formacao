@@ -32,6 +32,19 @@ class FuncionarioService
 
     }
 
+    public function updateFuncionario($request, $id)
+    {
+        try {
+            $funcionario = $this->repository->get($id);
+            $funcionario->fill($request->except(['id']));
+            $funcionario = $this->repository->save($funcionario);
+
+            return $funcionario;
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
+    }
+
     private function hashSenha($senha)
     {
         return Hash::make($senha);

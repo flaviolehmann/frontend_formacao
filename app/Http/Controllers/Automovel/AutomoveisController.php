@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AutomoveisController extends Controller
 {
+
+    public function __construct(
+        AutomovelService $automovelService
+    )
+    {
+        $this->automovelService = $automovelService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class AutomoveisController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Automovel::all(), 200);
     }
 
     /**
@@ -35,7 +42,7 @@ class AutomoveisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($this->automovelService->createAutomovel($request->all()), 201);
     }
 
     /**

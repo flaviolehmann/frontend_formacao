@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Cargo;
 
-use App\Http\Controllers\Controller;
+use App\Models\Cargo;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CargosController extends Controller
 {
@@ -14,7 +15,7 @@ class CargosController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Cargo::all(), 200);
     }
 
     /**

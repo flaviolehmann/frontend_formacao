@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Categoria;
 
-use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoriasController extends Controller
 {
@@ -14,7 +15,7 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Categoria::all(), 200);
     }
 
     /**

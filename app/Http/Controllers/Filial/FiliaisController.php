@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Filial;
 
-use App\Http\Controllers\Controller;
+use App\Models\Filial;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FiliaisController extends Controller
 {
@@ -14,7 +15,7 @@ class FiliaisController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Filial::all(), 200);
     }
 
     /**

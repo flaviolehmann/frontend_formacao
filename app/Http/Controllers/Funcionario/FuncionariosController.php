@@ -22,8 +22,7 @@ class FuncionariosController extends Controller
      */
     public function index()
     {
-        $lista = Funcionario::all();
-        return response()->json($lista);
+        return response()->json(Funcionario::all(), 200);
     }
 
     /**

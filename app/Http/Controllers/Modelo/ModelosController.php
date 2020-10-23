@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Modelo;
 
-use App\Http\Controllers\Controller;
+use App\Models\Modelo;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ModelosController extends Controller
 {
@@ -14,7 +15,7 @@ class ModelosController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json( Modelo::all(), 200);
     }
 
     /**

@@ -21,12 +21,20 @@ class FuncionarioServices
             $funcionario->fill($request->except(['senha']));
             $funcionario->senha = $this->gerarSenha();
 
+            $funcionarioSalvo = clone $funcionario;
+            $funcionario->senha = $this->hashSenha($funcionario->senha);
             $this->repository->save($funcionario);
-            return $funcionario;
+
+            return $funcionarioSalvo;
         } catch (\Throwable $th) {
             return response()->json(["Erro ao criar novo funcionário \n $th", 404]);
         }
 
+    }
+
+    private function hashSenha($senha)
+    {
+        return Hash::make($senha);
     }
 
     private function gerarSenha()

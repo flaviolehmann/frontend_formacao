@@ -15,4 +15,14 @@ class AutomovelRepository
         return $automovel;
     }
 
+    public function get($id)
+    {
+        return Automovel::findOrFail($id);
+    }
+
+    public function delete(int $idAutomovel)
+    {
+        Automovel::destroy($idAutomovel);
+    }
+
 }

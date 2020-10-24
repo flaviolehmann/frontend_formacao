@@ -30,4 +30,21 @@ class CargoService
         return $this->cargoRepository->save(new Cargo($cargo));
     }
 
+    public function updateCargo($request, $id)
+    {
+        try {
+            $cargo = $this->cargoRepository->get($id);
+            $cargo->fill($request->except(['id']));
+            $cargo = $this->cargoRepository->save($cargo);
+
+            return $cargo;
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 404);
+        }
+    }
+
+    public function destroyCargo(int $idFuncionario) {
+        $this->cargoRepository->delete($idFuncionario);
+    }
+
 }

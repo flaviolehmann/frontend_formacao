@@ -1,0 +1,107 @@
+<p-card header="Formulário de Funcionários">
+  <div class="ui-g">
+    <form [formGroup]="formulario" (submit)="salvar()">
+      <div class="ui-g-6 ui-md-6 ui-sm-6">
+        <span class="md-inputfield">
+          <input formControlName="nome"  pInputText type="text" />
+          <label>Nome</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ui-md-6 ui-sm-6">
+        <span class="md-inputfield">
+          <input formControlName="data_aniversario" pInputText type="text" />
+          <label>Data aniversário</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ui-md-6 ui-sm-6">
+        <span class="md-inputfield">
+          <input formControlName="sexo" pInputText type="text" />
+          <label>Sexo</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ui-md-6 ui-sm-6">
+        <span class="md-inputfield">
+          <input formControlName="cpf" pInputText type="text" />
+          <label>CPF</label>
+        </span>
+      </div>
+
+      <p-fieldset legend="Endereço">
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input formControlName="rua" pInputText type="text" />
+            <label>Rua</label>
+          </span>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input formControlName="bairro" pInputText type="text" />
+            <label>Bairro</label>
+          </span>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input formControlName="numero" pInputText type="text" />
+            <label>Número</label>
+          </span>
+        </div>
+        <div class="ui-g-6 ui-md-6 ui-sm-6">
+          <span class="md-inputfield">
+            <input formControlName="cidade" pInputText type="text" />
+            <label>Cidade</label>
+          </span>
+        </div>
+        <div class="ui-g-6 ui-md-6 ui-sm-6">
+          <span class="md-inputfield">
+            <input formControlName="uf" pInputText type="text" />
+            <label>UF</label>
+          </span>
+        </div>
+        <div class="ui-g-6 ui-md-6 ui-sm-6">
+          <span class="md-inputfield">
+            <input formControlName="cep" pInputText type="text" />
+            <label>CEP</label>
+          </span>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="Empresa">
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input formControlName="cargo_id" pInputText type="text" />
+            <label>Cargo</label>
+          </span>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input formControlName="filial_id" pInputText type="text" />
+            <label>Filial</label>
+          </span>
+        </div>
+          <div class="ui-g-4 ui-md-4 ui-sm-4">
+            <span class="md-inputfield">
+              <input formControlName="salario" pInputText type="text" />
+              <label>Salário</label>
+            </span>
+        </div>
+      </p-fieldset>
+
+      <div class="ui-g-6 ui-md-6 ui-sm-6">
+        <span class="md-inputfield">
+          <input formControlName="status" pInputText type="text" />
+          <label>Status</label>
+        </span>
+      </div>
+
+      <div class="ui-g-6 ui-md-6 ui-sm-6">
+        <span class="md-inputfield">
+          <input formControlName="sexo" pInputText type="text" />
+          <label>Senha</label>
+        </span>
+      </div>
+
+      <button pButton type="submit" label="Salvar"></button>
+    </form>
+  </div>
+</p-card>
+

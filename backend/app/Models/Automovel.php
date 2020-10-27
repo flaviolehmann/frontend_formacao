@@ -11,12 +11,12 @@ class Automovel extends Model
 
     public function modelo()
     {
-        return $this->hasOne(Modelo::class);
+        return $this->belongsTo(Modelo::class);
     }
 
     public function categoria()
     {
-        return $this->hasOne(Categoria::class);
+        return $this->belongsTo(Categoria::class);
     }
 
     public function filial()

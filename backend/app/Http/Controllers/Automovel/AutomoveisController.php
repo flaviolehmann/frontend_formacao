@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Automovel;
 
 use App\Models\Automovel;
+use App\Models\AutomovelList;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
@@ -31,7 +32,21 @@ class AutomoveisController extends Controller
      */
     public function index()
     {
-        return response()->json(Automovel::all(), 200);
+        $listaAutomoveis = Automovel::
+            with(array('modelo' => function($query)
+            {
+                $query->select('id', 'descricao');
+            }))
+            ->with(array('filial' => function($query)
+            {
+                $query->select('id', 'nome');
+            }))
+            ->with(array('categoria' => function($query)
+            {
+                $query->select('id', 'descricao');
+            }))
+            ->get();
+        return response()->json($listaAutomoveis, 200);
     }
 
     /**

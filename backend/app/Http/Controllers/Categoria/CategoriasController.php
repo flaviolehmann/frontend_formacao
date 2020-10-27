@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Categoria;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CategoriasController extends Controller
 {
@@ -21,23 +19,12 @@ class CategoriasController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
         return response()->json(Categoria::find($id), 200);
     }

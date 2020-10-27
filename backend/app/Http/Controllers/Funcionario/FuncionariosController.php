@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Services\FuncionarioService;
 use App\Http\Requests\FuncionarioRequest;
+use Throwable;
 
 class FuncionariosController extends Controller
 {
@@ -33,28 +34,18 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param FuncionarioRequest $request
+     * @return JsonResponse
      */
     public function store(FuncionarioRequest $request)
     {
         try {
-            $funcionario = $this->service->createFuncionario($request);
+            $funcionario = $this->funcionarioService->createFuncionario($request);
 
             return response()->json($funcionario, 201);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json(["message" => $th->getMessage()]);
         }
     }
@@ -62,39 +53,28 @@ class FuncionariosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
         return response()->json(Funcionario::find($id), 200);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         try {
-            $funcionario = $this->service->updateFuncionario($request, $id);
+            $funcionario = $this->funcionarioService->updateFuncionario($request, $id);
 
             return response()->json($funcionario, 200);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json($th->getMessage(), 200);
         }
     }

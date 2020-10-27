@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Services\AutomovelService;
 use App\Http\Controllers\Controller;
+use Throwable;
 
 class AutomoveisController extends Controller
 {
@@ -26,21 +27,11 @@ class AutomoveisController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
     public function index()
     {
         return response()->json(Automovel::all(), 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -57,10 +48,10 @@ class AutomoveisController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
         return response()->json(Automovel::find($id), 200);
     }
@@ -69,16 +60,16 @@ class AutomoveisController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         try {
             $automovel = $this->automovelService->updateAutomovel($request, $id);
 
             return response()->json($automovel, 200);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json($th->getMessage(), 404);
         }
     }

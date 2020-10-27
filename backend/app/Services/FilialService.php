@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Filial;
 use App\Repositories\FilialRepository;
+use Throwable;
 
 class FilialService
 {
@@ -43,7 +44,7 @@ class FilialService
             $filial = $this->filialRepository->save($filial);
 
             return $filial;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json($th->getMessage(), 404);
         }
     }

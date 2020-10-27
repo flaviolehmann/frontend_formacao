@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Funcionario;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\FuncionarioRepository;
+use Throwable;
 
 class FuncionarioService
 {
@@ -31,7 +32,7 @@ class FuncionarioService
             $this->funcionarioRepository->save($funcionario);
 
             return $funcionarioSalvo;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json(["Erro ao criar novo funcionário \n $th", 404]);
         }
 
@@ -40,12 +41,12 @@ class FuncionarioService
     public function updateFuncionario($request, $id)
     {
         try {
-            $funcionario = $this->repository->get($id);
+            $funcionario = $this->funcionarioRepository->get($id);
             $funcionario->fill($request->except(['id']));
-            $funcionario = $this->repository->save($funcionario);
+            $funcionario = $this->funcionarioRepository->save($funcionario);
 
             return $funcionario;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json($th->getMessage(), 404);
         }
     }

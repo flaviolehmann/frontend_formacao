@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Cargo;
 use App\Repositories\CargoRepository;
+use Throwable;
 
 class CargoService
 {
@@ -38,7 +39,7 @@ class CargoService
             $cargo = $this->cargoRepository->save($cargo);
 
             return $cargo;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json($th->getMessage(), 404);
         }
     }

@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Automovel;
 use App\Repositories\AutomovelRepository;
+use Throwable;
 
 class AutomovelService
 {
@@ -17,6 +18,7 @@ class AutomovelService
 
     /**
      * AutomovelService constructor.
+     * @param AutomovelRepository $automovelRepository
      */
     public function __construct(
         AutomovelRepository $automovelRepository
@@ -38,7 +40,7 @@ class AutomovelService
             $this->automovelRepository->save($automovel);
 
             return $automovel;
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json($th->getMessage(), 404);
         }
     }

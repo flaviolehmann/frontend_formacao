@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Cargo;
 
-use App\Http\Controllers\Controller;
-use App\Services\CargoService;
-use Illuminate\Http\JsonResponse;
+use App\Models\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\CargoService;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 
 class CargosController extends Controller
 {
@@ -67,7 +68,7 @@ class CargosController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Cargo::find($id), 200);
     }
 
     /**

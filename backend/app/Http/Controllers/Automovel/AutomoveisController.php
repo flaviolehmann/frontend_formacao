@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Automovel;
 
+use App\Models\Automovel;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use App\Services\AutomovelService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class AutomoveisController extends Controller
 {
@@ -51,6 +52,17 @@ class AutomoveisController extends Controller
     public function store(Request $request)
     {
         return response()->json($this->automovelService->createAutomovel($request->all()), 201);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        return response()->json(Automovel::find($id), 200);
     }
 
     /**

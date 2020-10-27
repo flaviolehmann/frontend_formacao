@@ -72,6 +72,17 @@ class FiliaisController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return response()->json(Filial::find($id), 200);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request

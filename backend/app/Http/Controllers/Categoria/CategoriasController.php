@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriasController extends Controller
 {
@@ -38,7 +39,8 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Categoria::find($id), 200);
     }
+
 
 }

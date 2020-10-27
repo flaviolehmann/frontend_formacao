@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Funcionario;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
-use App\Services\FuncionarioService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Services\FuncionarioService;
+use App\Http\Requests\FuncionarioRequest;
 
 class FuncionariosController extends Controller
 {
@@ -67,7 +67,7 @@ class FuncionariosController extends Controller
      */
     public function show($id)
     {
-
+        return response()->json(Funcionario::find($id), 200);
     }
 
     /**

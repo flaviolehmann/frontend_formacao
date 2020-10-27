@@ -7,6 +7,7 @@ use App\Services\CargoService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Throwable;
 
 class CargosController extends Controller
 {
@@ -19,13 +20,10 @@ class CargosController extends Controller
      * CargosController constructor.
      * @param CargoService $cargoService
      */
-    public function __construct(
-        CargoService $cargoService
-    )
+    public function __construct(CargoService $cargoService)
     {
         $this->cargoService = $cargoService;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -34,18 +32,7 @@ class CargosController extends Controller
      */
     public function index()
     {
-        return response()->json(Cargo::all(), 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function create(Request $request)
-    {
-        //
+        return response()->json($this->cargoService->findAll(), 200);
     }
 
     /**
@@ -56,7 +43,7 @@ class CargosController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($this->cargoService->createCargo($request->all()), 201);
+        return response()->json($this->cargoService->save($request->all()), 201);
     }
 
     /**
@@ -71,17 +58,6 @@ class CargosController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -91,23 +67,23 @@ class CargosController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $cargo = $this->cargoService->updateCargo($request, $id);
-
-            return response()->json($cargo, 200);
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
+            $cargo = $this->cargoService->update($request->all(), $id);
+            return response()->json($cargo);
+        } catch (Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $idCargo
+     * @param int $id
      * @return Response
      */
-    public function destroy(int $idCargo)
+    public function destroy(int $id)
     {
-        $this->cargoService->destroyCargo($idCargo);
-        return response(null, 204);
+        $this->cargoService->delete($id);
+
+        return response()->noContent();
     }
 }

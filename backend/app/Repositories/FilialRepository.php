@@ -1,27 +1,46 @@
 <?php
 
-
 namespace App\Repositories;
-
 
 use App\Models\Filial;
 
-class FilialRepository
+class FilialRepository implements BaseRepository
 {
+    /**
+     * @var Filial
+     */
+    protected $model;
 
-    public function save(Filial $filial)
+    public function __construct(Filial $filial)
     {
-        $filial->save();
+        $this->model = $filial;
+    }
+
+    public function save(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    public function update(array $data, $id)
+    {
+        $filial = $this->model->find($id);
+        $filial->update($data);
+
         return $filial;
     }
 
-    public function delete(int $idFilial)
+    public function findAll()
     {
-        Filial::destroy($idFilial);
+        return $this->model->all();
     }
 
-    public function get($id)
+    public function findById($id)
     {
-        return Filial::findOrFail($id);
+        return $this->model->find($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
     }
 }

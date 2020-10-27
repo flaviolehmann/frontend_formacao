@@ -5,16 +5,18 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Filial::class, function (Faker $faker) {
+    $faker->addProvider(new \Faker\Provider\pt_BR\Company($faker));
+
     return [
-        'nome' => $faker->randomAscii,
-        'numero' => $faker->numberBetween(),
-        'rua' => $faker->randomAscii,
-        'bairro' => $faker->randomAscii,
-        'complemento' => $faker->randomAscii,
-        'cidade' => $faker->randomAscii,
-        'uf' => $faker->randomAscii,
-        'cep' => $faker->randomAscii,
-        'cnpj' => $faker->randomAscii,
-        'inscricao_estadual' => $faker->randomAscii
+        'nome' => $faker->company,
+        'numero' => $faker->numberBetween(1, 2000),
+        'rua' => $faker->streetName,
+        'bairro' => $faker->state,
+        'complemento' => $faker->randomElement(['Casa', 'Apartamento']),
+        'cidade' => $faker->city,
+        'uf' => $faker->stateAbbr,
+        'cep' => $faker->randomNumber(8),
+        'cnpj' => $faker->unique()->cnpj(false),
+        'inscricao_estadual' => $faker->unique()->randomNumber(6, false)
     ];
 });

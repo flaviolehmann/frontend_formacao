@@ -25,18 +25,18 @@ class FuncionarioRequest extends FormRequest
     {
         // dd($this->all());
         return [
-            'nome' => 'required|min:10|max:100',
-            'sexo' => 'required|max:1',
-            'data_aniversario' => 'required',
-            'numero' => 'required|max:4',
-            'rua' => 'required',
-            'bairro' => 'required',
-            'complemento' => 'required',
-            'cidade' => 'required',
-            'uf' => 'required',
-            'cep' => 'required',
-            'cpf' => 'required',
-            'status' => 'required',
+            'nome' => ['required', 'min:3', 'max:100'],
+            'sexo' => ['required', 'max:1'],
+            'data_aniversario' => ['required'],
+            'numero' => ['required', 'max:6'],
+            'rua' => ['required'],
+            'bairro' => ['required'],
+            // 'complemento' => 'required',
+            'cidade' => ['required'],
+            'uf' => ['required', 'min:2', 'max:2'],
+            'cep' => ['required'],
+            'cpf' => ['required', 'min:11', 'max:11'],
+            'status' => ['required', 'numeric'],
         ];
     }
 }

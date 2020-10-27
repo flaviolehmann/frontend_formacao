@@ -17,8 +17,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.component';
-import { TesteComponent } from './teste/teste.component';
-import { Teste2Component } from './teste2/teste2.component';
 import { FuncionariosComponent } from './pages/funcionarios/funcionarios.component';
 import { FuncionarioFormComponent } from './pages/funcionario-form/funcionario-form.component';
 
@@ -29,8 +27,6 @@ import { FuncionarioFormComponent } from './pages/funcionario-form/funcionario-f
         AppFooterComponent,
         DiarioErrosComponent,
         PaginaInicialComponent,
-        TesteComponent,
-        Teste2Component,
         FuncionariosComponent,
         FuncionarioFormComponent,
     ],

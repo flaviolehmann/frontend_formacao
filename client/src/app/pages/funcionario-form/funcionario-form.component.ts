@@ -1,77 +1,113 @@
-import { Funcionario } from './../../models/funcionario.model';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-
-import { switchMap } from 'rxjs/operators';
-
-import { ActivatedRoute } from '@angular/router';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
+import { Funcionario } from "./../../models/funcionario.model";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { FuncionarioService } from "src/app/services/funcionario.service";
+import { MessageService, SelectItem } from "primeng";
+import { FilialService } from "src/app/services/filial.service";
+import { CargoService } from "src/app/services/cargo.service";
 
 @Component({
-  selector: 'app-funcionario-form',
-  templateUrl: './funcionario-form.component.html',
-  styleUrls: ['./funcionario-form.component.css']
+  selector: "app-funcionario-form",
+  templateUrl: "./funcionario-form.component.html",
+  styleUrls: ["./funcionario-form.component.css"],
 })
 export class FuncionarioFormComponent implements OnInit {
-
-  funcionarioId: number = null;
+  funcionarioId: string;
   formulario: FormGroup;
-  funcionario: Funcionario = new Funcionario();
+  funcionario: Funcionario;
+  cargos: SelectItem[];
+  filiais: SelectItem[];
+  sexos: SelectItem[] = [
+    { label: 'Selecione um sexo', value: null },
+    { label: 'Masculino', value: 'M' },
+    { label: 'Feminino', value: 'F' }
+  ];
 
   constructor(
     private activeRoute: ActivatedRoute,
+    private route: Router,
     private funcionarioService: FuncionarioService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastService: MessageService,
+    private filialService: FilialService,
+    private cargoService: CargoService
   ) { }
 
   ngOnInit(): void {
     this.iniciarForm();
-    // this.activeRoute.params.subscribe(params => this.funcionarioId = params['id']);
-    // this.activeRoute.paramMap.pipe(
-    //   switchMap(params => this.funcionarioService.obterPorId(+params.get("id")))
-    // ).subscribe(res => {
-    //   console.log(res);
-    //   this.funcionario = res;
-    //   this.formulario.patchValue(this.funcionario);
-    // })
+    this.funcionarioId = this.activeRoute.snapshot.paramMap.get('id');
 
+    // verifica para caso estiver alterando, carregar o funcionario
+    if(this.funcionarioId) {
+      this.carregarFuncionario(this.funcionarioId);
+    };
+
+    // carrega as filiais no dropdown mapeando para cada item do array para um novo objeto do tipo SelectItem
+    this.filialService.listar().subscribe((filiais) => {
+      this.filiais = filiais.map((filial) => {
+        return { label: filial.nome, value: filial.id};
+      });
+    });
+
+    // carrega os cargos no dropdown mapeando para cada item do array para um novo objeto do tipo SelectItem
+    this.cargoService.listar().subscribe((cargos) => {
+      this.cargos = cargos.map((cargo) => {
+        return { label: cargo.descricao, value: cargo.id };
+      })
+    });
   }
 
   salvar() {
-    console.log(this.formulario);
-    if (this.formulario.valid) {
-      console.log('salvar');
+    if(this.funcionarioId) {
+      this.funcionarioService.save(this.formulario.value).subscribe(
+        (funcionario) => {
+          this.route.navigate(['funcionarios']);
+          this.toastService.add({severity: 'success', summary: 'Sucesso', detail: 'Funcionário atualizado com sucesso!'});
+        },
+        () => {
+          this.toastService.add({severity: 'error', summary: 'Falha', detail: 'Falha ao atualizar funcionario.'});
+        }
+      );
+    } else {
+      this.funcionarioService.save(this.formulario.value).subscribe(
+        (funcionario) => {
+          this.route.navigate(['funcionarios']);
+          this.toastService.add({severity: 'success', summary: 'Sucesso', detail: 'Funcionário cadastrado com sucesso!'});
+        },
+        () => {
+          this.toastService.add({severity: 'error', summary: 'Falha', detail: 'Falha ao cadastrar funcionario.'});
+        }
+      );
     }
   }
 
-  carregarFuncionario(id: number) {
-    if (id) {
-      this.funcionarioService.obterPorId(id)
-        .subscribe(result => {
-          console.log(result);
-        })
-    }
+  private carregarFuncionario(id: number | string) {
+    this.funcionarioService.obterPorId(id).subscribe(
+      (funcionario) => {
+        this.formulario.patchValue(funcionario);
+      }
+    )
   }
 
-  iniciarForm() {
+  private iniciarForm() {
     this.formulario = this.formBuilder.group({
       id: [null],
-      nome: ['', [Validators.required, Validators.minLength(3)]],
+      nome: [null, [Validators.required, Validators.minLength(3)]],
       data_aniversario: [null, [Validators.required]],
-      sexo: [null, [Validators.required]],
-      cpf: [null, [Validators.required, Validators.maxLength(11)]],
-      numero: [null, [Validators.required]],
+      sexo: [null, [Validators.required, Validators.maxLength(1), Validators.minLength(1)]],
+      cpf: [null, [Validators.required, Validators.maxLength(11), Validators.minLength(11)]],
+      numero: [null, [Validators.required, Validators.maxLength(6)]],
       rua: [null, [Validators.required]],
       bairro: [null, [Validators.required]],
       complemento: [null],
       cidade: [null, [Validators.required]],
-      uf: [null, [Validators.required]],
+      uf: [null, [Validators.required, Validators.maxLength(2), Validators.minLength(2)]],
       cep: [null, [Validators.required]],
       salario: [null, [Validators.required]],
-      status: [null, [Validators.required]],
+      status: [1, [Validators.required]],
       cargo_id: [null, [Validators.required]],
       filial_id: [null, [Validators.required]],
-    })
+    });
   }
-
 }

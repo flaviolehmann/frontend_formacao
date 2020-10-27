@@ -1,25 +1,46 @@
 <?php
+
 namespace App\Repositories;
 
 use App\Models\Modelo;
 
-class ModeloRepository
+class ModeloRepository implements BaseRepository
 {
+    /**
+     * @var Modelo
+     */
+    protected $model;
 
-    public function save($modelo)
+    public function __construct(Modelo $modelo)
     {
-        $modelo->save();
+        $this->model = $modelo;
+    }
+
+    public function save(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    public function update(array $data, $id)
+    {
+        $modelo = $this->model->find($id);
+        $modelo->update($data);
+
         return $modelo;
     }
 
-    public function get($id)
+    public function findAll()
     {
-        return Modelo::findOrFail($id);
+        return $this->model->all();
     }
 
-    public function delete(int $idModelo)
+    public function findById($id)
     {
-        Modelo::destroy($idModelo);
+        return $this->model->find($id);
     }
 
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
+    }
 }

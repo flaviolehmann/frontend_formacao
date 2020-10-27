@@ -30,6 +30,7 @@
     "@nuvem/primeng-components": "~9.1.2",
     "chart.js": "2.7.1",
     "fullcalendar": "3.10.1",
+    "moment": "^2.29.1",
     "ng-block-ui": "^2.1.8",
     "ng2-currency-mask": "^9.0.2",
     "primeicons": "^4.0.0",

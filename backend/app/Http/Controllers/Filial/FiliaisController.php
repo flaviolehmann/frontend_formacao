@@ -10,6 +10,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Throwable;
 
 class FiliaisController extends Controller
 {
@@ -21,13 +22,10 @@ class FiliaisController extends Controller
     /**
      * FiliaisController constructor.
      */
-    public function __construct(
-        FilialService $filialService
-    )
+    public function __construct(FilialService $filialService)
     {
         $this->filialService = $filialService;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -36,17 +34,7 @@ class FiliaisController extends Controller
      */
     public function index()
     {
-        return response()->json(Filial::all(), 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($this->filialService->findAll(), 200);
     }
 
     /**
@@ -57,18 +45,7 @@ class FiliaisController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($this->filialService->createFilial($request->all()), 201);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($this->filialService->save($request->all()), 201);
     }
 
     /**
@@ -81,23 +58,24 @@ class FiliaisController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $filial = $this->filialService->updateFilial($request, $id);
+            $filial = $this->filialService->update($request->all(), $id);
 
-            return response()->json($filial, 200);
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
+            return response()->json($filial);
+        } catch (Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $idFilial
+     * @param int $id
      * @return Application|ResponseFactory|Response|void
      */
-    public function destroy(int $idFilial)
+    public function destroy($id)
     {
-        $this->filialService->destroyFilial($idFilial);
-        return response(null, 204);
+        $this->filialService->delete($id);
+
+        return response()->noContent();
     }
 }

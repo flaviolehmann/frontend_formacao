@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Cargo;
+use App\Services\BaseService;
 use App\Repositories\CargoRepository;
 
-class CargoService
+class CargoService implements BaseService
 {
     /**
      * @var CargoRepository
@@ -18,33 +16,33 @@ class CargoService
      * CargoService constructor.
      * @param CargoRepository $cargoRepository
      */
-    public function __construct(
-        CargoRepository $cargoRepository
-    )
+    public function __construct(CargoRepository $cargoRepository)
     {
         $this->cargoRepository = $cargoRepository;
     }
 
-    public function createCargo($cargo)
+    public function save(array $data)
     {
-        return $this->cargoRepository->save(new Cargo($cargo));
+        return $this->cargoRepository->save($data);
     }
 
-    public function updateCargo($request, $id)
+    public function update(array $data, $id)
     {
-        try {
-            $cargo = $this->cargoRepository->get($id);
-            $cargo->fill($request->except(['id']));
-            $cargo = $this->cargoRepository->save($cargo);
-
-            return $cargo;
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
-        }
+        return $this->cargoRepository->update($data, $id);
     }
 
-    public function destroyCargo(int $idFuncionario) {
-        $this->cargoRepository->delete($idFuncionario);
+    public function findAll()
+    {
+        return $this->cargoRepository->findAll();
     }
 
+    public function findById($id)
+    {
+        return $this->cargoRepository->findById($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->cargoRepository->delete($id);
+    }
 }

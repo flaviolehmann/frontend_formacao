@@ -3,25 +3,24 @@
     <form [formGroup]="formulario" (submit)="salvar()">
       <div class="ui-g-6 ui-md-6 ui-sm-6">
         <span class="md-inputfield">
-          <input formControlName="nome"  pInputText type="text" />
+          <input formControlName="nome" pInputText type="text" maxlength="100" />
           <label>Nome</label>
         </span>
       </div>
       <div class="ui-g-6 ui-md-6 ui-sm-6">
         <span class="md-inputfield">
-          <input formControlName="data_aniversario" pInputText type="text" />
+          <input formControlName="data_aniversario" pInputText type="text" maxlength="10" />
           <label>Data aniversário</label>
         </span>
       </div>
       <div class="ui-g-6 ui-md-6 ui-sm-6">
         <span class="md-inputfield">
-          <input formControlName="sexo" pInputText type="text" />
-          <label>Sexo</label>
+          <p-dropdown [options]="sexos" formControlName="sexo"></p-dropdown>
         </span>
       </div>
       <div class="ui-g-6 ui-md-6 ui-sm-6">
         <span class="md-inputfield">
-          <input formControlName="cpf" pInputText type="text" />
+          <input formControlName="cpf" pInputText type="text" maxlength="11"/>
           <label>CPF</label>
         </span>
       </div>
@@ -41,7 +40,7 @@
         </div>
         <div class="ui-g-4 ui-md-4 ui-sm-4">
           <span class="md-inputfield">
-            <input formControlName="numero" pInputText type="text" />
+            <input formControlName="numero" pInputText type="text" maxlength="6" />
             <label>Número</label>
           </span>
         </div>
@@ -53,7 +52,7 @@
         </div>
         <div class="ui-g-6 ui-md-6 ui-sm-6">
           <span class="md-inputfield">
-            <input formControlName="uf" pInputText type="text" />
+            <input formControlName="uf" pInputText type="text" maxlength="2" />
             <label>UF</label>
           </span>
         </div>
@@ -63,18 +62,26 @@
             <label>CEP</label>
           </span>
         </div>
+        <div class="ui-g-6 ui-md-6 ui-sm-6">
+          <span class="md-inputfield">
+            <input formControlName="complemento" pInputText type="text" />
+            <label>Complemento</label>
+          </span>
+        </div>
       </p-fieldset>
 
       <p-fieldset legend="Empresa">
         <div class="ui-g-4 ui-md-4 ui-sm-4">
           <span class="md-inputfield">
-            <input formControlName="cargo_id" pInputText type="text" />
+            <p-dropdown [options]="cargos" formControlName="cargo_id" ></p-dropdown>
+            <!-- <input formControlName="cargo_id" pInputText type="text" /> -->
             <label>Cargo</label>
           </span>
         </div>
         <div class="ui-g-4 ui-md-4 ui-sm-4">
           <span class="md-inputfield">
-            <input formControlName="filial_id" pInputText type="text" />
+            <p-dropdown [options]="filiais" formControlName="filial_id" ></p-dropdown>
+            <!-- <input formControlName="filial_id" pInputText type="text" /> -->
             <label>Filial</label>
           </span>
         </div>
@@ -85,22 +92,7 @@
             </span>
         </div>
       </p-fieldset>
-
-      <div class="ui-g-6 ui-md-6 ui-sm-6">
-        <span class="md-inputfield">
-          <input formControlName="status" pInputText type="text" />
-          <label>Status</label>
-        </span>
-      </div>
-
-      <div class="ui-g-6 ui-md-6 ui-sm-6">
-        <span class="md-inputfield">
-          <input formControlName="sexo" pInputText type="text" />
-          <label>Senha</label>
-        </span>
-      </div>
-
-      <button pButton type="submit" label="Salvar"></button>
+      <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
     </form>
   </div>
 </p-card>

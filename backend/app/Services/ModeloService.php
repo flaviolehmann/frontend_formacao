@@ -2,50 +2,44 @@
 
 namespace App\Services;
 
-use App\Models\Modelo;
+use App\Services\BaseService;
 use App\Repositories\ModeloRepository;
 
-class ModeloService
+class ModeloService implements BaseService
 {
     /**
      * @var ModeloRepository
      */
     private $modeloRepository;
 
-    public function __construct()
+    public function __construct(ModeloRepository $modeloRepository)
     {
-        $this->modeloRepository = new ModeloRepository();
+        $this->modeloRepository = $modeloRepository;
     }
 
-    public function createModelo($request)
+    public function save(array $data)
     {
-        try {
-            $modelo = new Modelo();
-            $modelo->fill($request->all());
-
-            $this->modeloRepository->save($modelo);
-
-            return $modelo;
-        } catch (\Throwable $th) {
-            return response()->json("Erro ao criar novo modelo \n $th", 404);
-        }
-
+        return $this->modeloRepository->save($data);
     }
 
-    public function updateModelo($request, $id)
+    public function update(array $data, $id)
     {
-        try {
-            $modelo = $this->repository->get($id);
-            $modelo->fill($request->except('id'));
-            $this->repository->save($modelo);
-
-            return $modelo;
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
-        }
+        return $this->modeloRepository->update($data, $id);
     }
-    public function destroyModelo(int $idModelo) {
-        $this->modeloRepository->delete($idModelo);
+
+    public function findAll()
+    {
+        return $this->modeloRepository->findAll();
+    }
+
+    public function findById($id)
+    {
+        return $this->modeloRepository->findById($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->modeloRepository->delete($id);
     }
 
 }

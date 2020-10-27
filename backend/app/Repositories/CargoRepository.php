@@ -1,28 +1,46 @@
 <?php
 
-
 namespace App\Repositories;
-
 
 use App\Models\Cargo;
 
-class CargoRepository
+class CargoRepository implements BaseRepository
 {
+    /**
+     * @var Cargo
+     */
+    protected $model;
 
-    public function save(Cargo $cargo)
+    public function __construct(Cargo $cargo)
     {
-        $cargo->save();
+        $this->model = $cargo;
+    }
+
+    public function save(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    public function update(array $data, $id)
+    {
+        $cargo = $this->model->find($id);
+        $cargo->update($data);
+
         return $cargo;
     }
 
-    public function get($id)
+    public function findAll()
     {
-        return Cargo::findOrFail($id);
+        return $this->model->all();
     }
 
-    public function delete(int $idCargo)
+    public function findById($id)
     {
-        Cargo::destroy($idCargo);
+        return $this->model->find($id);
     }
 
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
+    }
 }

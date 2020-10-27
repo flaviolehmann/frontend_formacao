@@ -12,6 +12,6 @@ class FilialSeeder extends Seeder
      */
     public function run()
     {
-        factory(Filial::class, 50)->create();
+        factory(Filial::class, 10)->create();
     }
 }

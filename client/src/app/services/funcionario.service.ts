@@ -1,46 +1,43 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment.prod';
-import { Funcionario } from '../models/funcionario.model';
-
+import { Observable } from "rxjs";
+import { environment } from "./../../environments/environment.prod";
+import { Funcionario } from "../models/funcionario.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class FuncionarioService {
 
-    api: string = `${environment.apiUrl}/funcionarios`;
+  api = `${environment.apiUrl}/funcionarios`;
 
-  constructor(
-      private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
-  listar(): Observable<any> {
-      return this.http.get(this.api)
+  listar(): Observable<Funcionario[]> {
+    return this.http.get<Funcionario[]>(this.api);
   }
 
-  obterPorId(id: number): Observable<any> {
-    return this.http.get(`${this.api}/${id}`);
+  obterPorId(id: number | string): Observable<Funcionario> {
+    return this.http.get<Funcionario>(`${this.api}/${id}`);
   }
 
-  save(data: Funcionario): Observable<any> {
-    if (data.id) {
-      return this.atualizar(data);
+  save(funcionario: Funcionario): Observable<Funcionario> {
+    if (funcionario.id) {
+      return this.atualizar(funcionario);
     }
-    return this.create(data);
+    return this.create(funcionario);
   }
 
-  create(data: Funcionario): Observable<any> {
-    return this.http.post(this.api, data);
+  private create(funcionario: Funcionario): Observable<Funcionario> {
+    return this.http.post<Funcionario>(this.api, funcionario);
   }
 
-  atualizar(data: Funcionario): Observable<any> {
-    return this.http.put(`${this.api}/${data.id}`, data);
+  private atualizar(funcionario: Funcionario): Observable<Funcionario> {
+    return this.http.put<Funcionario>(`${this.api}/${funcionario.id}`, funcionario);
   }
 
-  excluir(id: number): Observable<any> {
+  excluir(id: number | string): Observable<any> {
     return this.http.delete(`${this.api}/${id}`);
   }
 }

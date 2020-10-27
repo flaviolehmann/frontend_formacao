@@ -1,50 +1,48 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Automovel;
 use App\Repositories\AutomovelRepository;
+use App\Services\BaseService;
 
-class AutomovelService
+class AutomovelService implements BaseService
 {
     /**
      * @var AutomovelRepository
      */
     private $automovelRepository;
 
-
     /**
      * AutomovelService constructor.
+     * @param AutomovelRepository $automovelRepository
      */
-    public function __construct(
-        AutomovelRepository $automovelRepository
-    )
+    public function __construct(AutomovelRepository $automovelRepository)
     {
         $this->automovelRepository = $automovelRepository;
     }
 
-    public function createAutomovel($automovel)
+    public function save(array $data)
     {
-        return $this->automovelRepository->save(new Automovel($automovel));
+        return $this->automovelRepository->save($data);
     }
 
-    public function updateAutomovel($request, $id)
+    public function update(array $data, $id)
     {
-        try {
-            $automovel = $this->automovelRepository->get($id);
-            $automovel->fill($request->except('id'));
-            $this->automovelRepository->save($automovel);
-
-            return $automovel;
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
-        }
+        return $this->automovelRepository->update($data, $id);
     }
 
-    public function destroyAutomovel(int $idAutomovel) {
-        $this->automovelRepository->delete($idAutomovel);
+    public function findAll()
+    {
+        return $this->automovelRepository->findAll();
     }
 
+    public function findById($id)
+    {
+        return $this->automovelRepository->findById($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->automovelRepository->delete($id);
+    }
 }

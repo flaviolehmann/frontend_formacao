@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return response()->json($this->getDefaultErrorMessage($exception), 400);
+        return parent::render($request, $exception);
     }
 
     private function getDefaultErrorMessage(Throwable $exception)

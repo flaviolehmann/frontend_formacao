@@ -7,19 +7,17 @@ use App\Services\AutomovelService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Models\Automovel;
+use Throwable;
 
 class AutomoveisController extends Controller
 {
-
     /**
      * @var AutomovelService
      */
     private $automovelService;
 
-    public function __construct(
-        AutomovelService $automovelService
-    ) {
+    public function __construct(AutomovelService $automovelService)
+    {
         $this->automovelService = $automovelService;
     }
     /**
@@ -29,17 +27,7 @@ class AutomoveisController extends Controller
      */
     public function index()
     {
-        return response()->json(Automovel::all(), 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($this->automovelService->findAll());
     }
 
     /**
@@ -50,7 +38,7 @@ class AutomoveisController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($this->automovelService->createAutomovel($request->all()), 201);
+        return response()->json($this->automovelService->save($request->all()), 201);
     }
 
     /**
@@ -63,23 +51,23 @@ class AutomoveisController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $automovel = $this->automovelService->updateAutomovel($request, $id);
-
-            return response()->json($automovel, 200);
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
+            $automovel = $this->automovelService->update($request->all(), $id);
+            return response()->json($automovel);
+        } catch (Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $idAutomovel
+     * @param  int  $id
      * @return Response
      */
-    public function destroy(int $idAutomovel)
+    public function destroy($id)
     {
-        $this->automovelService->destroyAutomovel($idAutomovel);
-        return response(null, 204);
+        $this->automovelService->delete($id);
+
+        return response()->noContent();
     }
 }

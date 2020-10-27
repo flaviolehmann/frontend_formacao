@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Filial;
+use App\Services\BaseService;
 use App\Repositories\FilialRepository;
 
-class FilialService
+class FilialService implements BaseService
 {
     /**
      * @var FilialRepository
@@ -18,34 +16,34 @@ class FilialService
      * FilialService constructor.
      * @param FilialRepository $filialRepository
      */
-    public function __construct(
-        FilialRepository $filialRepository
-    )
+    public function __construct(FilialRepository $filialRepository)
     {
         $this->filialRepository = $filialRepository;
     }
 
-    public function createFilial($filial)
+    public function save(array $data)
     {
-        return $this->filialRepository->save(new Filial($filial));
+        return $this->filialRepository->save($data);
     }
 
-    public function destroyFilial(int $idFilial)
+    public function update(array $data, $id)
     {
-        $this->filialRepository->delete($idFilial);
+        return $this->filialRepository->update($data, $id);
     }
 
-    public function updateFilial($request, $id)
+    public function findAll()
     {
-        try {
-            $filial = $this->filialRepository->get($id);
-            $filial->fill($request->except(['id']));
-            $filial = $this->filialRepository->save($filial);
+        return $this->filialRepository->findAll();
+    }
 
-            return $filial;
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
-        }
+    public function findById($id)
+    {
+        return $this->filialRepository->findById($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->filialRepository->delete($id);
     }
 
 }

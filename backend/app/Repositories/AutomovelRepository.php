@@ -1,28 +1,47 @@
 <?php
 
-
 namespace App\Repositories;
-
 
 use App\Models\Automovel;
 
 class AutomovelRepository
 {
+    /**
+     * @var Automovel
+     */
+    protected $model;
 
-    public function save(Automovel $automovel)
+    public function __construct(Automovel $automovel)
     {
-        $automovel->save();
+        $this->model = $automovel;
+    }
+
+    public function save(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    public function update(array $data, $id)
+    {
+        $automovel = $this->model->find($id);
+        $automovel->update($data);
+
         return $automovel;
     }
 
-    public function get($id)
+    public function findAll()
     {
-        return Automovel::findOrFail($id);
+        return $this->model->all();
     }
 
-    public function delete(int $idAutomovel)
+    public function findById($id)
     {
-        Automovel::destroy($idAutomovel);
+        return $this->model->find($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
     }
 
 }

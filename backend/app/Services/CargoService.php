@@ -43,7 +43,8 @@ class CargoService
         }
     }
 
-    public function destroyCargo(int $idFuncionario) {
+    public function destroyCargo(int $idFuncionario)
+    {
         $this->cargoRepository->delete($idFuncionario);
     }
 

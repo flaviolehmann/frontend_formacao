@@ -67,11 +67,7 @@ class ModelosController extends Controller
      */
     public function show($id)
     {
-        try {
-            return response()->json(Modelo::find($id));
-        } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 404);
-        }
+        return response()->json(Modelo::find($id), 200);
     }
 
     /**

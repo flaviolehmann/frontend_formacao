@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\Funcionario;
-use App\Repositories\FuncionarioRepository;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\FuncionarioRepository;
 
 class FuncionarioService
 {

@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment.prod';
-import { Funcionario } from '../models/funcionario.model';
+import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment.prod';
+import {Funcionario} from '../models/funcionario.model';
+import {SelectItem} from "primeng";
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { Funcionario } from '../models/funcionario.model';
 })
 export class FuncionarioService {
 
-    api: string = `${environment.apiUrl}/funcionarios`;
+  api: string = `${environment.apiUrl}/funcionarios`;
 
   constructor(
       private http: HttpClient
@@ -42,5 +43,13 @@ export class FuncionarioService {
 
   excluir(id: number): Observable<any> {
     return this.http.delete(`${this.api}/${id}`);
+  }
+
+  getSexos(): SelectItem[] {
+    return [
+      { label: "Selecione um sexo", value: null },
+      { label: "Masculino", value: "M" },
+      { label: "Feminino", value: "F" }
+    ];
   }
 }

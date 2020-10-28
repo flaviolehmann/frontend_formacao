@@ -60,7 +60,8 @@ class Handler extends ExceptionHandler
         return [
             'error' => 'Bad Request',
             'status' => 400,
-            'message' => $exception->getMessage()
+            'message' => $exception->getMessage(),
+            'details' => $exception->getTraceAsString()
         ];
     }
 }

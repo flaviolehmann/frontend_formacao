@@ -11,7 +11,7 @@ class Funcionario extends Model
         'uf', 'cep', 'cpf', 'salario', 'status', 'senha', 'cargo_id', 'filial_id'];
     protected $guarded = ['id', 'created_at', 'update_at'];
 
-    public function filial()
+  public function filial()
     {
         return $this->belongsTo(Filial::class);
     }

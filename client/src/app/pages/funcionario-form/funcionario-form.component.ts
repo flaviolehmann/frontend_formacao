@@ -1,11 +1,11 @@
-import { Funcionario } from './../../models/funcionario.model';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { switchMap } from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
-import { ActivatedRoute } from '@angular/router';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
+import {ActivatedRoute} from '@angular/router';
+import {FuncionarioService} from 'src/app/services/funcionario.service';
+import {MessageService, SelectItem} from "primeng";
 
 @Component({
   selector: 'app-funcionario-form',
@@ -14,43 +14,36 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
 })
 export class FuncionarioFormComponent implements OnInit {
 
-  funcionarioId: number = null;
   formulario: FormGroup;
-  funcionario: Funcionario = new Funcionario();
 
   constructor(
     private activeRoute: ActivatedRoute,
     private funcionarioService: FuncionarioService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
     this.iniciarForm();
-    // this.activeRoute.params.subscribe(params => this.funcionarioId = params['id']);
-    // this.activeRoute.paramMap.pipe(
-    //   switchMap(params => this.funcionarioService.obterPorId(+params.get("id")))
-    // ).subscribe(res => {
-    //   console.log(res);
-    //   this.funcionario = res;
-    //   this.formulario.patchValue(this.funcionario);
-    // })
-
+    this.activeRoute.paramMap
+      .pipe(
+        switchMap(params => this.funcionarioService.obterPorId(+params.get("id")))
+      ).subscribe(
+        res => this.formulario.patchValue({ ...res, data_aniversario: new Date(res.data_aniversario) })
+    );
   }
 
   salvar() {
-    console.log(this.formulario);
     if (this.formulario.valid) {
-      console.log('salvar');
+      this.funcionarioService.save(this.formulario.value).subscribe(
+        () => this.messageService.add({ severity: "success", summary: "Sucesso!", detail: "Funcionário cadastrado." }),
+        error => {
+          this.messageService.add({ severity: "error", summary: "Error!", detail: "Verifique o formulário e tente novamente." });
+        }
+      )
+      return;
     }
-  }
-
-  carregarFuncionario(id: number) {
-    if (id) {
-      this.funcionarioService.obterPorId(id)
-        .subscribe(result => {
-          console.log(result);
-        })
-    }
+    this.messageService.add({ severity: "error", summary: "Error!", detail: "Formulário Inválido." });
   }
 
   iniciarForm() {
@@ -63,7 +56,7 @@ export class FuncionarioFormComponent implements OnInit {
       numero: [null, [Validators.required]],
       rua: [null, [Validators.required]],
       bairro: [null, [Validators.required]],
-      complemento: [null],
+      complemento: [null, [Validators.required]],
       cidade: [null, [Validators.required]],
       uf: [null, [Validators.required]],
       cep: [null, [Validators.required]],
@@ -71,7 +64,11 @@ export class FuncionarioFormComponent implements OnInit {
       status: [null, [Validators.required]],
       cargo_id: [null, [Validators.required]],
       filial_id: [null, [Validators.required]],
-    })
+    });
+  }
+
+  get sexos(): SelectItem[] {
+    return this.funcionarioService.getSexos();
   }
 
 }

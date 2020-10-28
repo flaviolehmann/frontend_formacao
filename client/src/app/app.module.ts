@@ -8,7 +8,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule } from '@nuvem/primeng-components';
-import { SecurityModule, VersionTagModule } from '@nuvem/angular-base';
+import { PipeModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 
 import { BlockUIModule } from 'ng-block-ui';
 
@@ -47,7 +47,8 @@ import { FuncionarioFormComponent } from './pages/funcionario-form/funcionario-f
         VersionTagModule,
         SecurityModule.forRoot(environment.auth),
         MenuModule,
-        CoreModule
+        CoreModule,
+        PipeModule
     ],
     providers: [
         ConfirmationService,

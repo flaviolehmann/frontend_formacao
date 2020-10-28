@@ -40,11 +40,10 @@ class FuncionarioService
     public function updateFuncionario($request, $id)
     {
         try {
-            $funcionario = $this->repository->get($id);
+            $funcionario = $this->funcionarioRepository->get($id);
             $funcionario->fill($request->except(['id']));
-            $funcionario = $this->repository->save($funcionario);
 
-            return $funcionario;
+            return $this->funcionarioRepository->save($funcionario);
         } catch (\Throwable $th) {
             return response()->json($th->getMessage(), 404);
         }
@@ -59,14 +58,19 @@ class FuncionarioService
     {
         $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $senha = '';
-        for (;strlen($senha) < 6;) {
-            $senha .= $caracteres[rand(0, strlen($caracteres)-1)];
+        while (strlen($senha) < 6) {
+          $senha .= $caracteres[rand(0, strlen($caracteres)-1)];
         }
         return $senha;
     }
 
     public function destroyFuncionario(int $idFuncionario) {
         $this->funcionarioRepository->delete($idFuncionario);
+    }
+
+    public function getFuncionario(int $idFuncionario)
+    {
+      return $this->funcionarioRepository->get($idFuncionario);
     }
 
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Funcionario;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
 use App\Services\FuncionarioService;
 use Illuminate\Http\JsonResponse;
@@ -45,15 +44,13 @@ class FuncionariosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(FuncionarioRequest $request)
+    public function store(Request $request)
     {
         try {
-            $funcionario = $this->service->createFuncionario($request);
-
-            return response()->json($funcionario, 201);
+            return response()->json($this->funcionarioService->createFuncionario($request), 201);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()]);
         }
@@ -67,7 +64,7 @@ class FuncionariosController extends Controller
      */
     public function show($id)
     {
-
+      return $this->funcionarioService->getFuncionario($id);
     }
 
     /**
@@ -84,9 +81,9 @@ class FuncionariosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(Request $request, $id)
     {

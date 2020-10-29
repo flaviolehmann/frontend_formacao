@@ -1,0 +1,113 @@
+<p-card header="Formulário de Funcionários">
+  <div class="ui-g form-funcionario">
+    <form [formGroup]="formulario" (submit)="salvar()">
+      <div class="ui-g-12">
+        <span class="md-inputfield">
+          <input id="inputNome" formControlName="nome" size="100" pInputText type="text" />
+          <label for="inputNome"> Nome </label>
+        </span>
+      </div>
+      <div class="ui-g-4">
+        <span class="md-inputfield">
+          <p-calendar formControlName="data_aniversario"></p-calendar>
+          <label> Data aniversário </label>
+        </span>
+      </div>
+      <div class="ui-g-4">
+        <span class="md-inputfield">
+          <input id="inputCpf" formControlName="cpf" [value]="formulario.get('cpf').value | cpf" pInputText type="text" maxlength="11"/>
+          <label for="inputCpf"> CPF </label>
+        </span>
+      </div>
+      <div class="ui-g-4">
+        <span class="md-inputfield">
+          <p-dropdown [options]="sexos" formControlName="sexo"></p-dropdown>
+        </span>
+      </div>
+
+      <p-fieldset legend="Endereço">
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input id="inputRua" formControlName="rua" pInputText type="text" />
+            <label for="inputRua"> Rua </label>
+          </span>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input id="inputBairro" formControlName="bairro" pInputText type="text" />
+            <label for="inputBairro"> Bairro </label>
+          </span>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input id="inputNumero" formControlName="numero" pInputText type="text" maxlength="6"/>
+            <label for="inputNumero"> Número </label>
+          </span>
+        </div>
+        <div class="ui-g-4">
+          <span class="md-inputfield">
+            <input id="inputCidade" formControlName="cidade" pInputText type="text" />
+            <label for="inputCidade"> Cidade </label>
+          </span>
+        </div>
+        <div class="ui-g-4">
+          <span class="md-inputfield">
+            <input id="inputUf" formControlName="uf" pInputText type="text" maxlength="2"/>
+            <label for="inputUf"> UF </label>
+          </span>
+        </div>
+        <div class="ui-g-4">
+          <span class="md-inputfield">
+            <input id="inputCep" formControlName="cep" pInputText type="number"/>
+            <label for="inputCep"> CEP </label>
+          </span>
+        </div>
+        <div class="ui-g-4">
+          <span class="md-inputfield">
+            <input id="inputComplemento" formControlName="complemento" pInputText/>
+            <label for="inputComplemento"> Complemento </label>
+          </span>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="Empresa">
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input id="inputCargo" formControlName="cargo_id" pInputText type="text" />
+            <label for="inputCargo"> Cargo </label>
+          </span>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-sm-4">
+          <span class="md-inputfield">
+            <input id="inputFilial" formControlName="filial_id" pInputText type="text" />
+            <label for="inputFilial"> Filial </label>
+          </span>
+        </div>
+          <div class="ui-g-4 ui-md-4 ui-sm-4">
+            <span class="md-inputfield">
+              <input id="inputSalario" formControlName="salario" [value]="formulario.get('salario').value" pInputText />
+              <label for="inputSalario"> Salário </label>
+            </span>
+        </div>
+      </p-fieldset>
+
+      <div class="mt-20">
+        <div class="ui-g-6">
+        <span class="md-inputfield">
+          <input id="inputStatus" formControlName="status" pInputText type="text" />
+          <label for="inputStatus"> Status </label>
+        </span>
+        </div>
+
+        <div class="ui-g-6">
+        <span class="md-inputfield">
+          <input id="inputSenha" formControlName="sexo" pInputText type="text" />
+          <label for="inputSenha"> Senha </label>
+        </span>
+        </div>
+      </div>
+
+      <button class="ui-g-offset-8 ui-g-4 mt-20" pButton type="submit" label="Salvar" [disabled]="!formulario.valid"></button>
+    </form>
+  </div>
+</p-card>

@@ -3,20 +3,20 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {MessageService} from "primeng";
 import {switchMap} from "rxjs/operators";
-import {CargoService} from "../../services/cargo.service";
+import {ModeloService} from "../../services/modelo.service";
 
 @Component({
-  selector: 'app-cargo-fom',
-  templateUrl: './cargo-fom.component.html',
-  styleUrls: ['./cargo-fom.component.css']
+  selector: 'app-modelo-form',
+  templateUrl: './modelo-form.component.html',
+  styleUrls: ['./modelo-form.component.css']
 })
-export class  CargoFomComponent implements OnInit {
+export class ModeloFormComponent implements OnInit {
 
   formulario: FormGroup;
 
   constructor(
       private activeRoute: ActivatedRoute,
-      private cargoService: CargoService,
+      private modeloService: ModeloService,
       private formBuilder: FormBuilder,
       private messageService: MessageService
   ) { }
@@ -29,7 +29,7 @@ export class  CargoFomComponent implements OnInit {
   atualizarParaEdicao() {
     this.activeRoute.paramMap
         .pipe(
-            switchMap(params => this.cargoService.obterPorId(+params.get("id")))
+            switchMap(params => this.modeloService.show(+params.get("id")))
         ).subscribe(res => {
           res.id && this.formulario.patchValue(res);
         }
@@ -38,7 +38,7 @@ export class  CargoFomComponent implements OnInit {
 
   salvar() {
     if (this.formulario.valid) {
-      this.cargoService.save(this.formulario.value).subscribe(
+      this.modeloService.create(this.formulario.value).subscribe(
           () => this.messageService.add({ severity: "success", summary: "Sucesso!", detail: "Cargo cadastrado." }),
           () => {
             this.messageService.add({ severity: "error", summary: "Error!", detail: "Verifique o formulário e tente novamente." });

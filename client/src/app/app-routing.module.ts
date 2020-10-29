@@ -9,11 +9,16 @@ import {LoginSuccessComponent} from '@nuvem/angular-base';
 import {FuncionarioFormComponent} from './pages/funcionario-form/funcionario-form.component';
 import {CargosComponent} from "./pages/cargos/cargos.component";
 import {CargoFomComponent} from "./pages/cargo-fom/cargo-fom.component";
+import {ModelosComponent} from "./pages/modelos/modelos.component";
+import {ModeloFormComponent} from "./pages/modelo-form/modelo-form.component";
 
 const routes: Routes = [
     { path: 'funcionarios', component: FuncionariosComponent },
     { path: 'funcionarios/novo', component: FuncionarioFormComponent },
     { path: 'funcionarios/:id', component: FuncionarioFormComponent },
+    { path: 'modelos', component: ModelosComponent },
+    { path: 'modelos/novo', component: ModeloFormComponent },
+    { path: 'modelos/:id', component: ModeloFormComponent },
     { path: 'cargos', component: CargosComponent },
     { path: 'cargos/novo', component: CargoFomComponent },
     { path: 'cargos/:id', component: CargoFomComponent },

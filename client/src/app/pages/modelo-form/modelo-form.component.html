@@ -1,0 +1,20 @@
+<p-card header="Formulário de Modelos">
+    <div class="ui-g form-funcionario">
+        <form [formGroup]="formulario" (submit)="salvar()">
+            <div class="ui-g-4">
+                <span class="md-inputfield">
+                  <input id="inputId" formControlName="id" pInputText disabled="true"/>
+                  <label for="inputId"> Id </label>
+                </span>
+            </div>
+            <div class="ui-g-8">
+                <span class="md-inputfield">
+                  <input id="inputDescricao" formControlName="descricao" pInputText/>
+                  <label for="inputDescricao"> Descrição </label>
+                </span>
+            </div>
+
+            <button class="ui-g-offset-8 ui-g-4" pButton type="submit" label="Salvar" [disabled]="!formulario.valid"></button>
+        </form>
+    </div>
+</p-card>

@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment.prod';
-import { Injectable } from '@angular/core';
-import { Funcionario } from '../models/funcionario.model';
-
-=======
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
@@ -13,7 +5,6 @@ import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment.prod';
 import {Funcionario} from '../models/funcionario.model';
 import {SelectItem} from "primeng";
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
 
 
 @Injectable({
@@ -21,15 +12,6 @@ import {SelectItem} from "primeng";
 })
 export class FuncionarioService {
 
-<<<<<<< HEAD
-    apiURL: string = `${environment.apiUrl}/funcionarios`;
-
-    constructor(private http: HttpClient) { }
-
-    index(): Observable<Funcionario[]> {
-        return this.http.get<Funcionario[]>(this.apiURL);
-    }
-=======
   api: string = `${environment.apiUrl}/funcionarios`;
 
   constructor(
@@ -70,5 +52,4 @@ export class FuncionarioService {
       { label: "Feminino", value: "F" }
     ];
   }
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
 }

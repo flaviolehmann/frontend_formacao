@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,11 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TesteComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor() { }
-
-  ngOnInit(): void {
-=======
     numero: any;
     var1:number = 3;
     numerosArray = [1, 2, 3, 4, 5, 6];
@@ -28,7 +19,6 @@ export class TesteComponent implements OnInit {
 
   testeClick() {
       this.var1 *= 10;
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
   }
 
 }

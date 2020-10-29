@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -9,7 +6,6 @@ import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {FuncionarioService} from 'src/app/services/funcionario.service';
 import {MessageService, SelectItem} from "primeng";
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
 
 @Component({
   selector: 'app-funcionario-form',
@@ -18,11 +14,6 @@ import {MessageService, SelectItem} from "primeng";
 })
 export class FuncionarioFormComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor() { }
-
-  ngOnInit(): void {
-=======
   formulario: FormGroup;
 
   constructor(
@@ -78,7 +69,6 @@ export class FuncionarioFormComponent implements OnInit {
 
   get sexos(): SelectItem[] {
     return this.funcionarioService.getSexos();
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
   }
 
 }

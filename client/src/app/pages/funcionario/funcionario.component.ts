@@ -36,7 +36,7 @@ export class FuncionarioComponent implements OnInit {
     }
 
     getFuncionarios() {
-        this.funcionarioService.index().subscribe(
+        this.funcionarioService.listar().subscribe(
             response => {
                 this.listaFuncionarios = response;
             },

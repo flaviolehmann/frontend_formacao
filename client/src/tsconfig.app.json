@@ -5,15 +5,8 @@
     "module": "es2015",
     "types": []
   },
-<<<<<<< HEAD
-//   "exclude": [
-//     "test.ts",
-//     "**/*.spec.ts"
-//   ]
-=======
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
   ]
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
 }

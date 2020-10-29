@@ -8,6 +8,7 @@ class Filial extends Model
 {
     protected $fillable = ['nome', 'numero', 'rua', 'bairro', 'complemento', 'cidade', 'uf', 'cep', 'inscricao_estadual', 'cnpj'];
     protected $guarded = ['id', 'created_at', 'update_at'];
+    public $timestamps = false;
 
     public function automoveis()
     {

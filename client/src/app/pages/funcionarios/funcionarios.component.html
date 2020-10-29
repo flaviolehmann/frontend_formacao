@@ -1,9 +1,6 @@
 
-<p-card>
-  <p-header>
-    <h1>Funcionários</h1>
-    <p-button label="Novo" routerLink="/funcionarios/novo"></p-button>
-  </p-header>
+<p-card header="Funcionários">
+  <p-button label="Novo" routerLink="/funcionarios/novo"></p-button>
     <p-table [value]="listaFuncionarios" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header">
             <th>Nome</th>

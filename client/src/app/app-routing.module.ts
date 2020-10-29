@@ -1,3 +1,5 @@
+import { FilialFormComponent } from './pages/filial-form/filial-form.component';
+import { FilialComponent } from './pages/filial/filial.component';
 import { FuncionariosComponent } from './pages/funcionarios/funcionarios.component';
 import { AutomovelFormComponent } from './pages/automovel-form/automovel-form.component';
 import { AutomovelComponent } from './pages/automovel/automovel.component';
@@ -18,6 +20,8 @@ const routes: Routes = [
     { path: 'automoveis', component: AutomovelComponent },
     { path: 'automoveis/novo', component: AutomovelFormComponent },
     { path: 'automoveis/:id', component: AutomovelFormComponent },
+    { path: 'filiais', component: FilialComponent },
+    { path: 'filiais/novo', component: FilialFormComponent },
     { path: 'diario-erros', component: DiarioErrosComponent, data: { breadcrumb: 'Diário de Erros'} },
     { path: 'login-success', component: LoginSuccessComponent },
 ];

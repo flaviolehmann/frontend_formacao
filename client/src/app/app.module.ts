@@ -23,6 +23,8 @@ import { AutomovelFormComponent } from './pages/automovel-form/automovel-form.co
 import { Teste2Component } from './teste2/teste2.component';
 import { FuncionariosComponent } from './pages/funcionarios/funcionarios.component';
 import { FuncionarioFormComponent } from './pages/funcionario-form/funcionario-form.component';
+import { FilialComponent } from './pages/filial/filial.component';
+import { FilialFormComponent } from './pages/filial-form/filial-form.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,8 @@ import { FuncionarioFormComponent } from './pages/funcionario-form/funcionario-f
         AutomovelComponent,
         AutomovelFormComponent,
         Teste2Component,
+        FilialComponent,
+        FilialFormComponent,
     ],
     imports: [
         BlockUIModule.forRoot({

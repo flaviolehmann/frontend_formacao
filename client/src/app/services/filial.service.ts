@@ -20,4 +20,8 @@ export class FilialService {
     show(id: number | string): Observable<Filial> {
         return this.http.get<Filial>(`${this.apiURL}/${id}`);
     }
+
+    delete(id: number | string): Observable<any> {
+      return this.http.delete(`${this.apiURL}/${id}`);
+    }
 }

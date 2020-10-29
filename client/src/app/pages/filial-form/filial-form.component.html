@@ -1,0 +1,77 @@
+<p-card header="Formulário de Automóvel">
+  <form class="ui-g" [formGroup]="formulario" (submit)="salvar()">
+    <p-fieldset class="ui-g-12 ui-md-12 ui-sm-12" legend="Empresa">
+      <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='nome' pInputText type="text">
+            <label>Nome</label>
+        </span>
+      </div>
+      <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='inscricao_estadual' pInputText type="text">
+            <label>Inscrição Estadual</label>
+        </span>
+      </div>
+      <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='cnpj' pInputText type="text">
+            <label>CNPJ</label>
+        </span>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset class="ui-g-12 ui-md-12 ui-sm-12" legend="Endereço">
+      <div class="ui-g-6 ui-md-6 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='rua' pInputText type="text">
+            <label>Rua</label>
+        </span>
+      </div>
+
+      <div class="ui-g-1 ui-md-1 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='numero' maxlength="7" pInputText type="text">
+            <label>Número</label>
+        </span>
+      </div>
+
+      <div class="ui-g-5 ui-md-5 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='complemento' pInputText type="text">
+            <label>Complemento</label>
+        </span>
+      </div>
+
+      <div class="ui-g-6 ui-md-4 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='bairro' pInputText type="text">
+            <label>Bairro</label>
+        </span>
+      </div>
+
+      <div class="ui-g-6 ui-md-4 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='cidade' pInputText type="text">
+            <label>Cidade</label>
+        </span>
+      </div>
+
+      <div class="ui-g-6 ui-md-1 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='cidade' maxlength="2" pInputText type="text">
+            <label>UF</label>
+        </span>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-sm-12">
+        <span class="md-inputfield">
+            <input formControlName='cep' pInputText type="number">
+            <label>CEP</label>
+        </span>
+      </div>
+    </p-fieldset>
+
+    <p-button type="submit" label="Salvar"></p-button>
+  </form>
+</p-card>

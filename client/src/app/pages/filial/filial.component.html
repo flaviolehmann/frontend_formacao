@@ -1,0 +1,37 @@
+<p-card header="Filiais">
+  <p-button [routerLink]="['/filiais/novo']" label="Novo"></p-button>
+  <p-table [value]='listaFiliais' [paginator]="true" [rows]="10">
+
+      <ng-template pTemplate="header">
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>Inscricao Estadual</th>
+          <th>CNPJ</th>
+          <th>Ações</th>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-filial>
+          <tr>
+              <td>{{filial.nome}}</td>
+              <td>{{filial.cidade}}</td>
+              <td>{{filial.inscricao_estadual}}</td>
+              <td>{{filial.cnpj}}</td>
+              <td>
+                  <button pButton icon='pi pi-check' [routerLink]="['/filiais', filial.id]"></button>
+                  <button pButton icon='pi pi-times' (click)="deleteFilial(filial.id)"></button>
+              </td>
+          </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td [attr.colspan]='8'>
+                  <p style="text-align: center;">
+                      Nenhuma filial recuperada.
+                  </p>
+              </td>
+          </tr>
+      </ng-template>
+
+  </p-table>
+</p-card>

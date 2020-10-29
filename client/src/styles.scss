@@ -63,6 +63,10 @@ button.float-right {
   min-width: auto !important;
 }
 
+.ui-inputtext {
+    width: 80%;
+}
+
 .calendarTable input {
   background-image: none !important;
   width: 100% !important;
@@ -92,6 +96,6 @@ body .ui-paginator .ui-dropdown {
   vertical-align: middle;
   width: 200px;
   height: 50px;
-  background: url("assets/layout/images/basis.jpg") top left no-repeat;
+  background: url('assets/layout/images/basis.jpg') top left no-repeat;
   background-size: 150px 50px;
 }

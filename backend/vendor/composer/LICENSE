@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Composer
 Upstream-Contact: Jordi Boggiano <j.boggiano@seld.be>
@@ -55,7 +54,6 @@ License: Expat
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
-=======
 
 Copyright (c) Nils Adermann, Jordi Boggiano
 
@@ -77,4 +75,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d

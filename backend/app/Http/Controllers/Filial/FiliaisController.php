@@ -10,10 +10,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-<<<<<<< HEAD
 use Throwable;
-=======
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
 
 class FiliaisController extends Controller
 {
@@ -24,10 +21,7 @@ class FiliaisController extends Controller
 
     /**
      * FiliaisController constructor.
-<<<<<<< HEAD
      * @param FilialService $filialService
-=======
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
      */
     public function __construct(
         FilialService $filialService
@@ -40,11 +34,7 @@ class FiliaisController extends Controller
     /**
      * Display a listing of the resource.
      *
-<<<<<<< HEAD
      * @return JsonResponse
-=======
-     * @return Response
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
      */
     public function index()
     {
@@ -52,19 +42,6 @@ class FiliaisController extends Controller
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
      * Store a newly created resource in storage.
      *
      * @param Request $request
@@ -76,7 +53,6 @@ class FiliaisController extends Controller
     }
 
     /**
-<<<<<<< HEAD
      * Display the specified resource.
      *
      * @param int $id
@@ -85,43 +61,22 @@ class FiliaisController extends Controller
     public function show(int $id)
     {
         return response()->json(Filial::find($id), 200);
-=======
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-<<<<<<< HEAD
      * @param int $id
      * @return JsonResponse
      */
     public function update(Request $request, int $id)
-=======
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
     {
         try {
             $filial = $this->filialService->updateFilial($request, $id);
 
             return response()->json($filial, 200);
-<<<<<<< HEAD
         } catch (Throwable $th) {
-=======
-        } catch (\Throwable $th) {
->>>>>>> 5109312fee3fc76cbb1b963b7ab3fefcd66d882d
             return response()->json($th->getMessage(), 404);
         }
     }

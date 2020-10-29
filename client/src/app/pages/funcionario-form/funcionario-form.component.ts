@@ -25,11 +25,16 @@ export class FuncionarioFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciarForm();
+    this.atualizarParaEdicao();
+  }
+
+  atualizarParaEdicao() {
     this.activeRoute.paramMap
-      .pipe(
-        switchMap(params => this.funcionarioService.obterPorId(+params.get("id")))
-      ).subscribe(
-        res => this.formulario.patchValue({ ...res, data_aniversario: new Date(res.data_aniversario) })
+        .pipe(
+            switchMap(params => this.funcionarioService.obterPorId(+params.get("id")))
+        ).subscribe(res => {
+          res.id && this.formulario.patchValue({ ...res, data_aniversario: new Date(res.data_aniversario) });
+        }
     );
   }
 
@@ -37,7 +42,7 @@ export class FuncionarioFormComponent implements OnInit {
     if (this.formulario.valid) {
       this.funcionarioService.save(this.formulario.value).subscribe(
         () => this.messageService.add({ severity: "success", summary: "Sucesso!", detail: "Funcionário cadastrado." }),
-        error => {
+        () => {
           this.messageService.add({ severity: "error", summary: "Error!", detail: "Verifique o formulário e tente novamente." });
         }
       )

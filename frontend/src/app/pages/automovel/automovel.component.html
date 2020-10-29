@@ -1,0 +1,43 @@
+<p-card header="Automóveis">
+    <p-button [routerLink]="['/automoveis/novo']" label="Novo"></p-button>
+    <p-table [value]='listaAutomoveis' [paginator]="true" [rows]="10">
+
+        <ng-template pTemplate="header">
+            <th>Nome</th>
+            <th>Ano</th>
+            <th>Cor</th>
+            <th>Nr Chassi</th>
+            <th>Modelo</th>
+            <th>Categoria</th>
+            <th>Filial</th>
+            <th>Ações</th>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-automovel>
+            <tr>
+                <td>{{automovel.nome}}</td>
+                <td>{{automovel.ano}}</td>
+                <td>{{automovel.cor}}</td>
+                <td>{{automovel.nr_chassi}}</td>
+                <td>{{automovel.modelo.descricao}}</td>
+                <td>{{automovel.categoria.descricao}}</td>
+                <td>{{automovel.filial.nome}}</td>
+                <td>
+                    <button pButton icon='pi pi-check' [routerLink]="['/automoveis', automovel.id]"></button>
+                    <button pButton icon='pi pi-times' (click)="deleteAutomovel(automovel.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]='8'>
+                    <p style="text-align: center;">
+                        Nenhum automóvel recuperado.
+                    </p>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</p-card>

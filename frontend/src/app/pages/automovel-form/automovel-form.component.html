@@ -1,0 +1,85 @@
+<p-card header="Formulário de Automóvel">
+    <form class="ui-g" [formGroup]="formulario" (submit)="salvar()">
+
+        <p-fieldset class="ui-g-12 ui-md-12 ui-sm-12" legend="Informações do Automóvel">
+            <div class="ui-g-6 ui-md-6 ui-sm-6">
+                <span class="md-inputfield">
+                    <input formControlName='nome' pInputText type="text">
+                    <label>Nome</label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2 ui-sm-2">
+                <span class="md-inputfield">
+                    <input formControlName='ano' pInputText type="number">
+                    <label>Ano</label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2 ui-sm-2">
+                <span class="md-inputfield">
+                    <input formControlName='nr_chassi' pInputText type="number">
+                    <label>Nº Chassi</label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2 ui-sm-2">
+                <span class="md-inputfield">
+                    <p-colorPicker formControlName='cor'></p-colorPicker>
+                    <label>Cor</label>
+                </span>
+            </div>
+        </p-fieldset>
+
+        <p-fieldset class="ui-g-12 ui-md-12 ui-sm-12" legend='Selecione'>
+            <div class="ui-g-6 ui-md-4 ui-sm-4">
+                <span class="md-inputfield">
+                    <p-dropdown
+                        [virtualScroll]="true"
+                        [options]="listaModelos"
+                        [filter]="true"
+                        emptyFilterMessage="Selecione..."
+                        itemSize="5"
+                        formControlName="modelo"
+                        optionLabel="descricao"
+                        dataKey="id"
+                    ></p-dropdown>
+                    <label>Modelo</label>
+                </span>
+            </div>
+
+            <div class="ui-g-6 ui-md-4 ui-  sm-4">
+                <span class="md-inputfield">
+                    <p-dropdown
+                        [options]="listaCategorias"
+                        [virtualScroll]="true"
+                        [filter]="true"
+                        formControlName="categoria"
+                        emptyFilterMessage="Selecione..."
+                        itemSize="5"
+                        optionLabel="descricao"
+                        dataKey="id"
+                    ></p-dropdown>
+                    <label>Categoria</label>
+                </span>
+            </div>
+
+            <div class="ui-g-6 ui-md-4 ui-sm-4">
+                <span class="md-inputfield">
+                    <p-dropdown
+                        [filter]="true"
+                        [virtualScroll]="true"
+                        [options]="listaFiliais"
+                        emptyFilterMessage="Selecione..."
+                        formControlName="filial"
+                        itemSize="5"
+                        optionLabel="nome"
+                        dataKey="id"
+                    ></p-dropdown>
+                    <label>Filial</label>
+                </span>
+            </div>
+        </p-fieldset>
+        <p-button type="submit" [disabled]='!formulario.valid' label="Salvar"></p-button>
+    </form>
+    <p-footer>
+
+    </p-footer>
+</p-card>

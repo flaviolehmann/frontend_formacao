@@ -2,7 +2,7 @@
 <p-card>
   <p-header>
     <h1>Funcionários</h1>
-    <p-button label="Novo" routerLink="/funcionario/novo"></p-button>
+    <p-button label="Novo" routerLink="/funcionarios/novo"></p-button>
   </p-header>
     <p-table [value]="listaFuncionarios" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header">
@@ -20,7 +20,7 @@
                 <td>{{ funcionario.cargo_id }}</td>
                 <td>{{ funcionario.filial_id }}</td>
                 <td>
-                  <button pButton icon="pi pi-check" [routerLink]="['/funcionario', funcionario.id]"></button>
+                  <button pButton icon="pi pi-check" [routerLink]="['/funcionarios', funcionario.id]"></button>
                   <button pButton icon="pi pi-times" (click)="excluir(funcionario.id)"></button>
                 </td>
             </tr>

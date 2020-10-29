@@ -18,11 +18,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.component';
 import { TesteComponent } from './teste/teste.component';
-import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { AutomovelComponent } from './pages/automovel/automovel.component';
 import { AutomovelFormComponent } from './pages/automovel-form/automovel-form.component';
 import { Teste2Component } from './teste2/teste2.component';
 import { FuncionariosComponent } from './pages/funcionarios/funcionarios.component';
+import { FuncionarioFormComponent } from './pages/funcionario-form/funcionario-form.component';
 
 @NgModule({
     declarations: [
@@ -32,11 +32,11 @@ import { FuncionariosComponent } from './pages/funcionarios/funcionarios.compone
         DiarioErrosComponent,
         PaginaInicialComponent,
         TesteComponent,
-        FuncionarioComponent,
+        FuncionarioFormComponent,
+        FuncionariosComponent,
         AutomovelComponent,
         AutomovelFormComponent,
         Teste2Component,
-        FuncionariosComponent,
     ],
     imports: [
         BlockUIModule.forRoot({

@@ -7,11 +7,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {DiarioErrosComponent} from './components/diario-erros/diario-erros.component';
 import {LoginSuccessComponent} from '@nuvem/angular-base';
 import {FuncionarioFormComponent} from './pages/funcionario-form/funcionario-form.component';
+import {CargosComponent} from "./pages/cargos/cargos.component";
+import {CargoFomComponent} from "./pages/cargo-fom/cargo-fom.component";
 
 const routes: Routes = [
     { path: 'funcionarios', component: FuncionariosComponent },
     { path: 'funcionarios/novo', component: FuncionarioFormComponent },
     { path: 'funcionarios/:id', component: FuncionarioFormComponent },
+    { path: 'cargos', component: CargosComponent },
+    { path: 'cargos/novo', component: CargoFomComponent },
+    { path: 'cargos/:id', component: CargoFomComponent },
     { path: 'automoveis', component: AutomovelComponent },
     { path: 'automoveis/novo', component: AutomovelFormComponent },
     { path: 'automoveis/:id', component: AutomovelFormComponent },

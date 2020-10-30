@@ -22,6 +22,7 @@ const routes: Routes = [
     { path: 'automoveis/:id', component: AutomovelFormComponent },
     { path: 'filiais', component: FilialComponent },
     { path: 'filiais/novo', component: FilialFormComponent },
+    { path: 'filiais/:id', component: FilialFormComponent },
     { path: 'diario-erros', component: DiarioErrosComponent, data: { breadcrumb: 'Diário de Erros'} },
     { path: 'login-success', component: LoginSuccessComponent },
 ];

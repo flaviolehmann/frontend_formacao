@@ -74,7 +74,7 @@ export class AutomovelFormComponent implements OnInit {
     }
 
     buscarFilial(id: number | string) {
-        this.filialService.show(id).subscribe(
+        this.filialService.show(+id).subscribe(
             response => {
                 this.formulario.patchValue({'filial': response});
             },

@@ -9,7 +9,17 @@ class CreateModeloTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void    apiURL: string = `${environment.apiUrl}/modelos`;
+
+    constructor(private http: HttpClient) { }
+
+    index(): Observable<Modelo[]> {
+        return this.http.get<Modelo[]>(this.apiURL);
+    }
+
+    show(id: number | string): Observable<Modelo> {
+        return this.http.get<Modelo>(`${this.apiURL}/${id}`);
+    }
      */
     public function up()
     {

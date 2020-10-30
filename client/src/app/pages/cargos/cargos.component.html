@@ -1,0 +1,28 @@
+<p-card header="Cargos">
+    <p-button label="Novo" routerLink="/cargos/novo"></p-button>
+    <p-table [value]="listaCargos" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <th> Id </th>
+            <th> Descrição </th>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-funcionario >
+            <tr>
+                <td>{{ funcionario.id }}</td>
+                <td>{{ funcionario.descricao }}</td>
+                <td>
+                    <button pButton icon="pi pi-check" [routerLink]="['/cargos', funcionario.id]"></button>
+                    <button pButton icon="pi pi-times" (click)="excluir(funcionario.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]="5">
+                    <p style="text-align: center;">Nenhum funcionário cadastrado</p>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

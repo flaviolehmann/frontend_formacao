@@ -53,7 +53,9 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
             { label: 'Funcionarios', icon: 'create_new_folder', routerLink: ['/funcionarios'] },
             { label: 'Automóveis', icon: 'create_new_folder', routerLink: ['/automoveis'] },
-            { label: 'Filiais', icon: 'create_new_folder', routerLink: ['/filiais'] },
+            { label: 'Cargos', icon: 'create_new_folder', routerLink: ['/cargos'] },
+            { label: 'Modelos', icon: 'create_new_folder', routerLink: ['/modelos'] },
+            { label: 'Filiais', icon: 'create_new_folder', routerLink: ['/filiais'] }
         ];
     }
 

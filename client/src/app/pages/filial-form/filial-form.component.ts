@@ -36,14 +36,14 @@ export class FilialFormComponent implements OnInit {
         id: [null],
         nome: [null, Validators.required],
         inscricao_estadual: [null, Validators.required],
-        cnpj: [null, [Validators.required, Validators.max(99999999999999)]],
+        cnpj: [null, Validators.required],
         rua: [null, Validators.required],
         numero: [null, Validators.required],
         complemento: [null, Validators.required],
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         uf: [null, Validators.required],
-        cep: [null, [Validators.required, Validators.max(99999999)]],
+        cep: [null, Validators.required],
     })
   }
 
